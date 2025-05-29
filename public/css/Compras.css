@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=mulish:ital,wght@200..1000;1,200..1000display=swap');
+
+:root {
+    --font: "mulish", sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font);
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+}
+
+.img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cards {
+    position: relative;
+    width: 60%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.cards_card {
+    position: relative;
+    width: 250px;
+    height: 450px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.card_img {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 40px;
+}
+
+.card_img.active {
+    border: 2px solid var(--aquamarine);
+}
+
+.card_descripcion {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.descripcion_categoria {
+    color: var(--aquamarine);
+    font-size: 1.2em;
+    font-weight: 500;
+}
+
+.descripcion_nombre {
+    color: var(--blue);
+    font-size: 1.5em;
+    font-weight: 800;
+}
+
+.descripcion_precio {
+    color: var(--blue);
+    font-size: 1.5em;
+    font-weight: 600;   
+}
+
+.card_btn-shop {
+    position: absolute;
+    top: 225px;
+    left: 25px;
+    width: 200px;
+    padding: 15px;
+    border-radius: 25px;
+    transition: 0.4s;
+    cursor: pointer;
+    border: 2px solid var(--aquamarine);
+    font-size: 1em;
+    font-weight: 600;
+    background-color: aquamarine;
+    color: var(--aquamarine);
+}
+
+.card_btn-shop {
+    margin-right: 5px;
+    color: var(--aquamarine);
+}
+
+.card_cantidad {
+    position: absolute;
+    top:  225px;
+    left: 25px;
+    width: 200px;
+    padding: 10px;
+    border-radius: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--aquamarine);
+    border: 2px solid var(--aquamarine);
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--blue);
+    display: none;
+}
+
+.cantidad_btn-add,
+.cantidad_btn-remove {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 1.5em;
+    color: var(--aquamarine);
+}
+
+/*carrito*/
+.cart-list {
+    position: fixed;
+    top: 40px;
+    right: 80px;
+    width: 30%;
+    background-color: var(--aquamarine);
+    padding: 40px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.cart-list h2{
+    font-size: 2em;
+    color: var(--blue);
+}
+
+.cart-list_items {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    max-height: 450px;
+    overflow-y: auto;
+}
+
+.cart-list_items p {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: var(--aquamarine);
+}
+
+.items_img {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    rotate: -20deg;
+}

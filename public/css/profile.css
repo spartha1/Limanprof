@@ -1,0 +1,66 @@
+
+
+/* Contenedor principal */
+.container {
+    margin-top: 30px;
+}
+
+/* Imagen de perfil */
+.avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid #ddd;
+    margin-bottom: 10px;
+}
+
+/* Botón de carga de imagen */
+.file-upload {
+    margin-top: 10px;
+}
+
+/* Panel de bienvenida */
+.panel-heading {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Formularios */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-control {
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+/* Botones */
+.btn-success {
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+    font-size: 14px;
+    padding: 8px 16px;
+}
+
+.btn-danger {
+    background-color: #d9534f;
+    border-color: #d43f3a;
+    font-size: 14px;
+    padding: 8px 16px;
+}
+
+/* Pestañas de navegación */
+.nav-tabs {
+    margin-bottom: 20px;
+}
+
+.nav-tabs > li > a {
+    color: #555;
+    font-weight: bold;
+}
+
+/* Ajuste de los inputs */
+.col-xs-6 {
+    padding-bottom: 15px;
+}
