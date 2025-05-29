@@ -22,7 +22,7 @@ body {
     display: grid;
     grid-template-rows: auto 1fr auto;
     grid-template-areas:"header" "main" "footer";
-    background-image: url('/lima/public/img/Designer.jpeg');
+    background-image: url('/Limanprof/public/img/Designer.jpeg');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -313,7 +313,7 @@ footer .wave {
     left: 0;
     width: 100%;
     height: 300px;
-    background:url(/lima/public/img/wave.png);
+    background:url(/Limanprof/public/img/wave.png);
     background-size: 3000px 300px;
 }
 
@@ -434,7 +434,7 @@ footer .wave {
 
     footer .wave {
         height: 450px;
-        background:url(/lima/public/img/wave.png);
+        background:url(/Limanprof/public/img/wave.png);
         background-size: 4500px 450px;
     }
 }

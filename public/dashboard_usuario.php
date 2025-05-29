@@ -8,10 +8,10 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Limanprof</title>
+    <title>Limanprofnprof</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="/lima/public/css/style_users.css">
-    <link rel="stylesheet" href="/lima/public/css/dashboard.css">
+    <link rel="stylesheet" href="/Limanprof/public/css/style_users.css">
+    <link rel="stylesheet" href="/Limanprof/public/css/dashboard.css">
     <link href="/img/Icono.png" rel="icon" type="image/x-icon">
 </head>
 
@@ -20,7 +20,7 @@ session_start();
     if ($_SESSION['tipo'] == "usuario") {
     ?>
         <header class="header">
-            <a href="#"><img class="logo" src="/lima/public/img/logoLimanprofSB.png" alt="Logo de Limanprof"></a>
+            <a href="#"><img class="logo" src="/Limanprof/public/img/logoLimanprofnprofSB.png" alt="Logo de Limanprofnprof"></a>
 
             <section id="content">
                 <!-- NAVBAR -->
@@ -227,7 +227,7 @@ session_start();
             <div class="container">
                 <div class="wrapper">
                     <div class="footer-widget">
-                        <a href=""><img class="logo" src="/lima/public/img/logoLimanprofSB.png" alt="Logo de Limanprof"></a>
+                        <a href=""><img class="logo" src="/Limanprof/public/img/logoLimanprofnprofSB.png" alt="Logo de Limanprofnprof"></a>
                         <p>No somos una opcion, Somos la solución
                         </p>
                         <ul class="social_icon">
@@ -268,7 +268,7 @@ session_start();
                     </div>
                 </div>
                 <div class="copyright-wrapper">
-                    <p>2025 Limanprof. Todos los derechos reservados.
+                    <p>2025 Limanprofnprof. Todos los derechos reservados.
                         <a href="https://Endex.dev" target="blank">Endex.dev</a>
                     </p>
                 </div>

@@ -14,7 +14,7 @@
 <body>
 
     <header class="header">
-        <a href="#"><img class="logo" src="/lima/public/img/logoLimanprofSB.png" alt="Logo de Limanprof"></a>
+        <a href="#"><img class="logo" src="/Limanprof/public/img/logoLimanprofnprofSB.png" alt="Logo de Limanprofnprof"></a>
         <input type="checkbox" id="check">
 
         <label for="check" class="icons">
@@ -27,20 +27,20 @@
         </label>
         <nav class="menu">
             <a href="index.php" style="--i:0;">Inicio</a>
-            <a href="/lima/public/Nosotros.php" style="--i:1;">Nosotros</a>
+            <a href="/Limanprof/public/Nosotros.php" style="--i:1;">Nosotros</a>
             <!-- Submenu Servicios -->
             <div class="menu-item">
                 <a href="#" style="--i:2;">Servicios ▼</a>
                 <div class="submenu">
-                    <a href="/lima/public/Limpieza.php" style="--i:3;">Limpieza</a>
-                    <a href="/lima/public/Jardineria.php" style="--i:4;">Jardinería</a>
-                    <a href="/lima/public/Mantenimiento.php" style="--i:5;">Mantenimiento</a>
-                    <a href="/lima/public/Especial.php" style="--i:6;">Especializado</a>
+                    <a href="/Limanprof/public/Limpieza.php" style="--i:3;">Limpieza</a>
+                    <a href="/Limanprof/public/Jardineria.php" style="--i:4;">Jardinería</a>
+                    <a href="/Limanprof/public/Mantenimiento.php" style="--i:5;">Mantenimiento</a>
+                    <a href="/Limanprof/public/Especial.php" style="--i:6;">Especializado</a>
                 </div>
             </div>
-            <a href="/lima/public/Clientes.php" style="--1:6;">Nuestros clientes</a>
-            <a href="/lima/public/Contacto.php" style="--i:3;">Contacto</a>
-            <a href="/lima/public/login.php" style="--i:4;">Iniciar sesión</a>
+            <a href="/Limanprof/public/Clientes.php" style="--1:6;">Nuestros clientes</a>
+            <a href="/Limanprof/public/Contacto.php" style="--i:3;">Contacto</a>
+            <a href="/Limanprof/public/login.php" style="--i:4;">Iniciar sesión</a>
         </nav>
 
     </header>
@@ -91,7 +91,7 @@
         <div class="container">
             <div class="wrapper">
                 <div class="footer-widget">
-                    <a href=""><img class="logo" src="/lima/public/img/logoLimanprofSB.png" alt="Logo de Limanprof"></a>
+                    <a href=""><img class="logo" src="/Limanprof/public/img/logoLimanprofnprofSB.png" alt="Logo de Limanprofnprof"></a>
                     <p>No somos una opción, somos la solución.
                     </p>
                     <ul class="social_icon">
@@ -132,7 +132,7 @@
                 </div>
             </div>
             <div class="copyright-wrapper">
-                <p>2025 Limanprof. Todos los derechos reservados.
+                <p>2025 Limanprofnprof. Todos los derechos reservados.
                     <a href="https://Endex.dev" target="blank">Endex.dev</a>
                 </p>
             </div>

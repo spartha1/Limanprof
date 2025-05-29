@@ -3,7 +3,7 @@
 $hostbd = "localhost";
 $usuariobd = "root";
 $passbd = "";
-$nombrebd = "liman_prof";
+$nombrebd = "Limanprofn_prof";
 $charset = 'utf8mb4';
 
 try {

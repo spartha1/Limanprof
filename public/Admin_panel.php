@@ -15,7 +15,7 @@
 <body>
 
     <header class="header">
-        <a href="#"><img class="logo" src="/lima/public/img/logoLimanprofSB.png" alt="Logo de Limanprof"></a>
+        <a href="#"><img class="logo" src="/Limanprof/public/img/logoLimanprofnprofSB.png" alt="Logo de Limanprofnprof"></a>
         <input type="checkbox" id="check">
         <label for="check" class="icons">
             <i class='bx bx-menu' id="menu-icon"><ion-icon name="menu-outline"></ion-icon></i>
@@ -70,7 +70,7 @@
         <div class="container">
             <div class="wrapper">
                 <div class="footer-widget">
-                    <a href=""><img class="logo" src="/lima/public/img/logoLimanprofSB.png" alt="Logo de Limanprof"></a>
+                    <a href=""><img class="logo" src="/Limanprof/public/img/logoLimanprofnprofSB.png" alt="Logo de Limanprofnprof"></a>
                     <p>No somos una opción, somos la solución.
                     </p>
                     <ul class="social_icon">
@@ -111,7 +111,7 @@
                 </div>
             </div>
             <div class="copyright-wrapper">
-                <p>2025 Limanprof. Todos los derechos reservados.
+                <p>2025 Limanprofnprof. Todos los derechos reservados.
                     <a href="https://Endex.dev" target="blank">Endex.dev</a>
                 </p>
             </div>

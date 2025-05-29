@@ -4,15 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Limanprof</title>
-    <link rel="stylesheet" href="/lima/public/css/style.css">
-    <link rel="stylesheet" href="/lima/public/css/nosotros.css">
-    <link href="/img/Icono.png" rel="icon" type="image/x-icon">
+    <title>Limanprofnprof</title>
+    <link rel="stylesheet" href="/Limanprof/public/css/style.css">
+    <link rel="stylesheet" href="/Limanprof/public/css/nosotros.css">
+    <link href="/Limanprof/public/img/Icono.png" rel="icon" type="image/x-icon">
 </head>
 
 <body>
     <header class="header">
-        <a href="#"><img class="logo" src="/lima/public/img/logoLimanprofSB.png" alt="Logo de Limanprof"></a>
+        <a href="#"><img class="logo" src="/Limanprof/public/img/logoLimanprofSB.png" alt="Logo de Limanprofnprof"></a>
         <input type="checkbox" id="check">
 
         <label for="check" class="icons">
@@ -24,39 +24,39 @@
                 </svg></i>
         </label>
         <nav class="menu">
-            <a href="/lima/index.php" style="--i:0;">Inicio</a>
-            <a href="/lima/public/Nosotros.php" style="--i:1;">Nosotros</a>
+            <a href="/Limanprof/index.php" style="--i:0;">Inicio</a>
+            <a href="/Limanprof/public/Nosotros.php" style="--i:1;">Nosotros</a>
             <!-- Submenu Servicios -->
             <div class="menu-item">
                 <a href="#" style="--i:2;">Servicios ▼</a>
                 <div class="submenu">
-                    <a href="/lima/public/Limpieza.php" style="--i:3;">Limpieza</a>
-                    <a href="/lima/public/Jardineria.php" style="--i:4;">Jardinería</a>
-                    <a href="/lima/public/Mantenimiento.php" style="--i:5;">Mantenimiento</a>
-                    <a href="/lima/public/Especial.php" style="--i:6;">Especializado</a>
+                    <a href="/Limanprof/public/Limpieza.php" style="--i:3;">Limpieza</a>
+                    <a href="/Limanprof/public/Jardineria.php" style="--i:4;">Jardinería</a>
+                    <a href="/Limanprof/public/Mantenimiento.php" style="--i:5;">Mantenimiento</a>
+                    <a href="/Limanprof/public/Especial.php" style="--i:6;">Especializado</a>
                 </div>
             </div>
-            <a href="/lima/public/Clientes.php" style="--1:6;">Nuestros clientes</a>
-            <a href="/lima/public/Contacto.php" style="--i:3;">Contacto</a>
-            <a href="/lima/public/login.php" style="--i:4;">Iniciar sesión</a>
+            <a href="/Limanprof/public/Clientes.php" style="--1:6;">Nuestros clientes</a>
+            <a href="/Limanprof/public/Contacto.php" style="--i:3;">Contacto</a>
+            <a href="/Limanprof/public/login.php" style="--i:4;">Iniciar sesión</a>
         </nav>
 
     </header>
     <main>
         <section class="home" id="home">
             <div class="home-content">
-                <h1>¿Quiénes somos? <span>Limanprof</span></h1>
+                <h1>¿Quiénes somos? <span>Limanprofnprof</span></h1>
                 <div class="text-animate">
                     <h3>No somos una opcion, somos la solución</h3>
                 </div>
                 <p>
-                    LIMANPROF S.A. de C.V. Es una empresa mexicana creada y fundada recientemente con un grupo de colaboradores con más de diez años de experiencia en limpieza.
+                    LimanprofNPROF S.A. de C.V. Es una empresa mexicana creada y fundada recientemente con un grupo de colaboradores con más de diez años de experiencia en limpieza.
                     Preocupados por la problemática constante de dicha actividad y a su vez poder agilizar dichos procesos de servicio de manera óptima.
                     Encontrarán un respaldo de mayor confianza y profesionalismo en cuanto a limpieza residencial, mantenimiento de inmuebles, jardinería, así como costos competitivos en la venta de productos y materiales.
                 </p>
             </div>
             <div class="home-image">
-                <img src="/lima/public/img/IconoLimanprofSB.png" alt="Limanprof">
+                <img src="/Limanprof/public/img/Icono.png" alt="Limanprofnprof">
             </div>
 
         </section>
@@ -108,7 +108,7 @@
             <h3 class="subtitle">Contacto</h3>
             <h3 class="text"><strong>Dirección:</strong> C. de Preciados, México</h3>
             <h3 class="text"><strong>Teléfono:</strong> 554039764</h3>
-            <h3 class="text"><strong>Email:</strong> direccion@limanprof.com</h3>
+            <h3 class="text"><strong>Email:</strong> direccion@Limanprofnprof.com</h3>
         </section>
     </main>
 
@@ -122,7 +122,7 @@
         <div class="container">
             <div class="wrapper">
                 <div class="footer-widget">
-                    <a href=""><img class="logo" src="/lima/public/img/logoLimanprofSB.png" alt="Logo de Limanprof"></a>
+                    <a href=""><img class="logo" src="/Limanprof/public/img/logoLimanprofSB.png" alt="Logo de Limanprofnprof"></a>
                     <p>No somos una opción, somos la solución.
                     </p>
                     <ul class="social_icon">
@@ -141,30 +141,30 @@
                 <div class="footer-widget">
                     <h6>Enlaces</h6>
                     <ul class="links">
-                        <li><a href="/lima/public/index.php">Inicio</a></li>
-                        <li><a href="/lima/public/Nosotros.php">Nosotros</a></li>
+                        <li><a href="/Limanprof/index.php">Inicio</a></li>
+                        <li><a href="/Limanprof/public/Nosotros.php">Nosotros</a></li>
                     </ul>
                 </div>
                 <div class="footer-widget">
                     <h6>Servicios</h6>
                     <ul class="links">
-                        <li><a href="/lima/public/Limpieza.php">Limpieza</a></li>
-                        <li><a href="/lima/public/Mantenimiento.php">Mantenimiento</a></li>
-                        <li><a href="/lima/public/Jardineria.php">Jardinería</a></li>
-                        <li><a href="/lima/public/Especial.php">Especializado</a></li>
+                        <li><a href="/Limanprof/public/Limpieza.php">Limpieza</a></li>
+                        <li><a href="/Limanprof/public/Mantenimiento.php">Mantenimiento</a></li>
+                        <li><a href="/Limanprof/public/Jardineria.php">Jardinería</a></li>
+                        <li><a href="/Limanprof/public/Especial.php">Especializado</a></li>
                     </ul>
                 </div>
                 <div class="footer-widget">
                     <h6>Ayuda &amp; Soporte</h6>
                     <ul class="links">
-                        <li><a href="/lima/public/Contacto.php">Contacto</a></li>
-                        <li><a href="/lima/public/Clientes.php">Nuestros clientes</a></li>
-                        <li><a href="/lima/public/FAQ.php">Pregunstas frecuentes</a></li>
+                        <li><a href="/Limanprof/public/Contacto.php">Contacto</a></li>
+                        <li><a href="/Limanprof/public/Clientes.php">Nuestros clientes</a></li>
+                        <li><a href="/Limanprof/public/FAQ.php">Pregunstas frecuentes</a></li>
                     </ul>
                 </div>
             </div>
             <div class="copyright-wrapper">
-                <p>2025 Limanprof. Todos los derechos reservados.
+                <p>2025 Limanprofnprof. Todos los derechos reservados.
                     <a href="https://Endex.dev" target="blank">Endex.dev</a>
                 </p>
             </div>
