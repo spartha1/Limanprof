@@ -1,0 +1,75 @@
+/* Personalización de DataTables */
+.dataTables_wrapper {
+    padding: 20px 0;
+    color: #fff;
+}
+
+.dataTables_length select,
+.dataTables_filter input {
+    background: rgba(8, 27, 41, 0.7);
+    border: 1px solid #0ef;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin: 0 5px;
+}
+
+.dataTables_length select option {
+    background: rgba(8, 27, 41, 0.9);
+}
+
+.dataTables_filter input:focus {
+    border-color: #0ef;
+    box-shadow: 0 0 5px rgba(0, 238, 255, 0.5);
+    outline: none;
+}
+
+.dataTables_info {
+    color: rgba(255, 255, 255, 0.7);
+    padding: 10px 0;
+}
+
+.dataTables_paginate {
+    padding: 10px 0;
+}
+
+.dataTables_paginate .paginate_button {
+    padding: 5px 10px;
+    margin: 0 2px;
+    border: 1px solid #0ef;
+    border-radius: 5px;
+    background: transparent;
+    color: #fff !important;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dataTables_paginate .paginate_button:hover {
+    background: rgba(0, 238, 255, 0.2) !important;
+    border-color: #0ef !important;
+    color: #fff !important;
+}
+
+.dataTables_paginate .paginate_button.current {
+    background: rgba(0, 238, 255, 0.2) !important;
+    border-color: #0ef !important;
+    color: #0ef !important;
+}
+
+.dataTables_paginate .paginate_button.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Responsive en móviles */
+@media screen and (max-width: 640px) {
+    .dataTables_wrapper .dataTables_length,
+    .dataTables_wrapper .dataTables_filter {
+        float: none;
+        text-align: center;
+    }
+    
+    .dataTables_wrapper .dataTables_filter {
+        margin-top: 10px;
+    }
+}

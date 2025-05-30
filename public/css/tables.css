@@ -1,0 +1,132 @@
+.data-section {
+    padding: 20px;
+}
+
+.data-header {
+    margin-bottom: 30px;
+}
+
+.table-wrapper {
+    background: rgba(8, 27, 41, 0.7);
+    border-radius: 10px;
+    border: 2px solid #0ef;
+    box-shadow: 0 0 25px rgba(0, 238, 255, 0.2);
+    padding: 25px;
+    margin-top: 20px;
+}
+
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.table-container {
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #0ef rgba(8, 27, 41, 0.7);
+}
+
+.table-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.table-container::-webkit-scrollbar-track {
+    background: rgba(8, 27, 41, 0.7);
+    border-radius: 4px;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+    background: #0ef;
+    border-radius: 4px;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    color: white;
+    min-width: 800px;
+}
+
+.data-table thead th {
+    background: rgba(0, 238, 255, 0.1);
+    color: #0ef;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 15px;
+    text-align: left;
+    border-bottom: 2px solid #0ef;
+}
+
+.data-table tbody td {
+    padding: 12px 15px;
+    border-bottom: 1px solid rgba(0, 238, 255, 0.2);
+}
+
+.data-table tbody tr {
+    transition: all 0.3s ease;
+}
+
+.data-table tbody tr:hover {
+    background: rgba(0, 238, 255, 0.1);
+}
+
+/* Botones */
+.table-btn {
+    position: relative;
+    padding: 8px 16px;
+    background: transparent;
+    border: 2px solid #0ef;
+    border-radius: 40px;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 1;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.table-btn::before {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 300%;
+    z-index: -1;
+    transition: .5s;
+}
+
+.table-btn-add {
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+.table-btn-add::before {
+    background: linear-gradient(#081b29, #0ef, #081b29, #0ef);
+}
+
+.table-btn-edit::before {
+    background: linear-gradient(#081b29, #ffba08, #081b29, #ffba08);
+}
+
+.table-btn-delete::before {
+    background: linear-gradient(#081b29, #dc3545, #081b29, #dc3545);
+}
+
+.table-btn:hover::before {
+    top: 0;
+}
+
+.table-btn-edit {
+    border-color: #ffba08;
+}
+
+.table-btn-delete {
+    border-color: #dc3545;
+}

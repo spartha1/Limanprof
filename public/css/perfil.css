@@ -1,0 +1,299 @@
+.profile-container {
+    background: rgba(8, 27, 41, 0.7);
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+    border: 2px solid #0ef;
+    box-shadow: 0 0 25px #0ef;
+    overflow: hidden;
+    margin: 20px;
+    color: white;
+}
+
+.profile-header {
+    position: relative;
+    height: 250px;
+}
+
+.profile-cover {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.cover-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.change-cover {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    background: rgba(8, 27, 41, 0.8);
+    padding: 8px 15px;
+    border-radius: 40px;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 2px solid #0ef;
+    transition: all 0.3s ease;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.change-cover::before {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 300%;
+    background: linear-gradient(#081b29, #0ef, #081b29, #0ef);
+    z-index: -1;
+    transition: .5s;
+}
+
+.change-cover:hover::before {
+    top: 0;
+}
+
+.profile-avatar {
+    position: absolute;
+    bottom: -60px;
+    left: 50px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 4px solid #0ef;
+    box-shadow: 0 0 25px rgba(0, 238, 255, 0.5);
+    overflow: hidden;
+    z-index: 2;
+}
+
+.avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.change-avatar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    background: rgba(8, 27, 41, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.profile-avatar:hover .change-avatar {
+    opacity: 1;
+}
+
+.profile-body {
+    padding: 80px 30px 30px;
+}
+
+.profile-info {
+    margin-bottom: 40px;
+}
+
+.info-header {
+    margin-bottom: 20px;
+}
+
+.info-header h2 {
+    font-size: 32px;
+    margin-bottom: 10px;
+    color: #0ef;
+}
+
+.user-role {
+    display: inline-block;
+    padding: 5px 15px;
+    background: rgba(0, 238, 255, 0.1);
+    border: 1px solid #0ef;
+    border-radius: 20px;
+    font-size: 14px;
+    color: #0ef;
+}
+
+.info-stats {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+}
+
+.stat-item i {
+    font-size: 24px;
+    color: #0ef;
+}
+
+.profile-actions {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.profile-actions .btn {
+    position: relative;
+    padding: 12px 30px;
+    background: transparent;
+    border: 2px solid #0ef;
+    border-radius: 40px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+.profile-actions .btn::before {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 300%;
+    background: linear-gradient(#081b29, #0ef, #081b29, #0ef);
+    z-index: -1;
+    transition: .5s;
+}
+
+.profile-actions .btn:hover::before {
+    top: 0;
+}
+
+.profile-actions .btn-password {
+    border-color: #ffba08;
+}
+
+.profile-actions .btn-password::before {
+    background: linear-gradient(#081b29, #ffba08, #081b29, #ffba08);
+}
+
+.profile-sections {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+}
+
+.section {
+    background: rgba(8, 27, 41, 0.5);
+    border-radius: 10px;
+    padding: 30px;
+    border: 1px solid rgba(0, 238, 255, 0.2);
+}
+
+.section h3 {
+    font-size: 24px;
+    color: #0ef;
+    margin-bottom: 30px;
+}
+
+/* Estilos para formularios dentro del perfil */
+.profile-form .form-group {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.profile-form label {
+    display: block;
+    margin-bottom: 20px;
+    color: rgba(6, 2, 34, 0.1);
+    font-size: 14px;
+}
+
+.profile-form input,
+.profile-form textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    padding: 10px 0;
+    color: white;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.profile-form input:focus,
+.profile-form textarea:focus {
+    border-bottom-color: #0ef;
+    outline: none;
+}
+
+/* Estilos para la lista de actividad */
+.activity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.activity-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background: rgba(0, 238, 255, 0.1);
+    border-radius: 10px;
+    border: 1px solid rgba(0, 238, 255, 0.2);
+}
+
+.activity-item i {
+    font-size: 24px;
+    color: #0ef;
+}
+
+.activity-info p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.activity-info span {
+    display: block;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 5px;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .profile-sections {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-actions {
+        flex-direction: column;
+    }
+
+    .info-stats {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .profile-avatar {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .profile-body {
+        padding: 100px 20px 30px;
+    }
+}

@@ -10,9 +10,9 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Limanprofnprof</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="/Limanprof/public/css/style_users.css">
-    <link rel="stylesheet" href="/Limanprof/public/css/dashboard.css">
-    <link href="/Limanprof/public/img/Icono.png" rel="icon" type="image/x-icon">
+    <link rel="stylesheet" href="./css/style_users.css">
+    <link rel="stylesheet" href="./css/dashboard.css">
+    <link href="img/Icono.png" rel="icon" type="image/x-icon">
 </head>
 
 <body>
@@ -20,7 +20,7 @@ session_start();
     if ($_SESSION['tipo'] == "admin") {
     ?>
         <header class="header">
-            <a href="#"><img class="logo" src="/Limanprof/public/img/logoLimanprofnprofSB.png" alt="Logo de Limanprofnprof"></a>
+            <a href="#"><img class="logo" src="/Limanprof/public/img/logoLimanprofSB.png" alt="Logo de Limanprofnprof"></a>
 
             <section id="content">
                 <!-- NAVBAR -->
@@ -42,11 +42,11 @@ session_start();
                     </a>
                     <span class="divider"></span>
                     <div class="profile">
-                        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cGVvcGxlfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="">
+                        <img src="img/avatars/default-avatar.jpg" alt="<?php echo $_SESSION['nombre_usuario']; ?>">
                         <ul class="profile-link">
-                            <li><a href="dashboard_administrador_perfil.php"><i class='bx bxs-user-circle icon'></i> Profile</a></li>
-                            <li><a href="#"><i class='bx bxs-cog'></i> Settings</a></li>
-                            <li><a href="logout.php"><i class='bx bxs-log-out-circle'></i> Logout</a></li>
+                            <li><a href="?page=perfil"><i class='bx bxs-user-circle icon'></i> Mi Perfil</a></li>
+                            <li><a href="#"><i class='bx bxs-cog'></i> Configuración</a></li>
+                            <li><a href="logout.php"><i class='bx bxs-log-out-circle'></i> Cerrar Sesión</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -151,7 +151,7 @@ session_start();
             <div class="container">
                 <div class="wrapper">
                     <div class="footer-widget">
-                        <a href=""><img class="logo" src="/Limanprof/public/img/logoLimanprofnprofSB.png" alt="Logo de Limanprofnprof"></a>
+                        <a href=""><img class="logo" src="/Limanprof/public/img/logoLimanprofSB.png" alt="Logo de Limanprofnprof"></a>
                         <p>No somos una opcion, Somos la solución
                         </p>
                         <ul class="social_icon">
@@ -293,38 +293,41 @@ session_start();
                 brand_sesion.classList.toggle('hide');
             })
 
-            // APEXCHART
-            var options = {
-                series: [{
-                    name: 'series1',
-                    data: [31, 40, 28, 51, 42, 109, 100]
-                }, {
-                    name: 'series2',
-                    data: [11, 32, 45, 32, 34, 52, 41]
-                }],
-                chart: {
-                    height: 350,
-                    type: 'area'
-                },
-                dataLabels: {
-                    enabled: false
-                },
-                stroke: {
-                    curve: 'smooth'
-                },
-                xaxis: {
-                    type: 'datetime',
-                    categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
-                },
-                tooltip: {
-                    x: {
-                        format: 'dd/MM/yy HH:mm'
+            // APEXCHART - Solo inicializar si existe el elemento
+            if (document.querySelector("#chart")) {
+                var options = {
+                    series: [{
+                        name: 'series1',
+                        data: [31, 40, 28, 51, 42, 109, 100]
+                    }, {
+                        name: 'series2',
+                        data: [11, 32, 45, 32, 34, 52, 41]
+                    }],
+                    chart: {
+                        height: 350,
+                        type: 'area',
+                        foreColor: '#fff' // Color del texto
                     },
-                },
-            };
+                    dataLabels: {
+                        enabled: false
+                    },
+                    stroke: {
+                        curve: 'smooth'
+                    },
+                    xaxis: {
+                        type: 'datetime',
+                        categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
+                    },
+                    tooltip: {
+                        x: {
+                            format: 'dd/MM/yy HH:mm'
+                        },
+                    },
+                };
 
-            var chart = new ApexCharts(document.querySelector("#chart"), options);
-            chart.render();
+                var chart = new ApexCharts(document.querySelector("#chart"), options);
+                chart.render();
+            }
         </script>
 
     <?php

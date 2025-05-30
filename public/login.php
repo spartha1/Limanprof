@@ -30,21 +30,23 @@ session_start();
             $contraseña = $_POST['contraseña'];
             $tipo = "";
             include("../config/config.php");
-            $sql = "select * from usuarios where nombre_usuario ='" . $nombre_usuario  . "' and contraseña ='" . $contraseña . "' ";
-            $resultado = mysqli_query($conexion, $sql);
+            $sql = "SELECT * FROM usuarios WHERE nombre_usuario = ? AND contraseña = ?";
+            $stmt = $conexion->prepare($sql);
+            $stmt->bind_param("ss", $nombre_usuario, $contraseña);
+            $stmt->execute();
+            $resultado = $stmt->get_result();
 
-            if ($fila = mysqli_fetch_assoc($resultado)) {
-                $tipo = $fila['tipo'];
+            if ($fila = $resultado->fetch_assoc()) {
+                $_SESSION['id'] = $fila['id'];
                 $_SESSION['nombre_usuario'] = $nombre_usuario;
-                $_SESSION['tipo'] = $tipo;
+                $_SESSION['tipo'] = $fila['tipo'];
 
-
-                if ($tipo == "admin") {
+                if ($fila['tipo'] == "admin") {
                     echo "<script language='JavaScript'>
                     alert('Bienvenido " . $nombre_usuario . "  !!!');
                     location.assign('dashboard_administrador.php');
                     </script>";
-                } else if ($tipo == "usuario") {
+                } else if ($fila['tipo'] == "usuario") {
                     echo "<script language='JavaScript'>
                     alert('Bienvenido " . $nombre_usuario . "  !!!');
                     location.assign('dashboard_usuario.php');
