@@ -1,11 +1,41 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const avatarUpload = document.querySelector('.change-avatar');
-    const coverUpload = document.querySelector('.change-cover');
+    // Crear inputs ocultos para las imágenes
+    const avatarInput = document.createElement('input');
+    avatarInput.type = 'file';
+    avatarInput.accept = 'image/*';
+    avatarInput.style.display = 'none';
+    document.body.appendChild(avatarInput);
+
+    const coverInput = document.createElement('input');
+    coverInput.type = 'file';
+    coverInput.accept = 'image/*';
+    coverInput.style.display = 'none';
+    document.body.appendChild(coverInput);
+
+    // Eventos para abrir selector de archivos
+    document.querySelector('.change-avatar').addEventListener('click', () => {
+        avatarInput.click();
+    });
+
+    document.querySelector('.change-cover').addEventListener('click', () => {
+        coverInput.click();
+    });
+
+    // Manejar cambios en los inputs de archivo
+    avatarInput.addEventListener('change', () => {
+        handleImageUpload('avatar', avatarInput);
+    });
+
+    coverInput.addEventListener('change', () => {
+        handleImageUpload('cover', coverInput);
+    });
 
     function handleImageUpload(type, input) {
+        if (!input.files || !input.files[0]) return;
+
         const formData = new FormData();
-        formData.append('image', input.files[0]);
         formData.append('type', type);
+        formData.append('image', input.files[0]);
 
         fetch('process/upload_image.php', {
             method: 'POST',
@@ -14,11 +44,11 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                // Actualizar la imagen en la página
-                const imgElement = type === 'avatar' ? 
-                    document.querySelector('.avatar-img') : 
-                    document.querySelector('.cover-img');
-                imgElement.src = data.path;
+                if (type === 'avatar') {
+                    document.querySelector('.avatar-img').src = data.path;
+                } else {
+                    document.querySelector('.cover-img').src = data.path;
+                }
             } else {
                 alert(data.message || 'Error al subir la imagen');
             }
@@ -27,26 +57,5 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Error:', error);
             alert('Error al subir la imagen');
         });
-    }
-
-    // Event listeners para subida de imágenes
-    if (avatarUpload) {
-        const avatarInput = document.createElement('input');
-        avatarInput.type = 'file';
-        avatarInput.accept = 'image/*';
-        avatarInput.style.display = 'none';
-
-        avatarUpload.addEventListener('click', () => avatarInput.click());
-        avatarInput.addEventListener('change', () => handleImageUpload('avatar', avatarInput));
-    }
-
-    if (coverUpload) {
-        const coverInput = document.createElement('input');
-        coverInput.type = 'file';
-        coverInput.accept = 'image/*';
-        coverInput.style.display = 'none';
-
-        coverUpload.addEventListener('click', () => coverInput.click());
-        coverInput.addEventListener('change', () => handleImageUpload('cover', coverInput));
     }
 });

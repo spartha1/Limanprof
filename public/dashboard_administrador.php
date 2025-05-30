@@ -83,9 +83,9 @@ session_start();
                     <li>
                         <a href="#"><i class='bx bxs-briefcase icon'></i> Servicios <i class='bx bx-chevron-right icon-right'></i></a>
                         <ul class="side-dropdown">
-                            <li><a href="#">Lista de Servicios</a></li>
-                            <li><a href="#">Agregar Servicio</a></li>
-                            <li><a href="#">Editar Servicios</a></li>
+                            <li><a href="?page=servicios_lista">Lista de Servicios</a></li>
+                            <li><a href="?page=servicios_agregar">Agregar Servicio</a></li>
+                            <li><a href="?page=servicios_lista">Editar Servicios</a></li>
                         </ul>
                     </li>
 

@@ -208,35 +208,63 @@
     margin-bottom: 30px;
 }
 
-/* Estilos para formularios dentro del perfil */
-.profile-form .form-group {
+/* Estilos actualizados para formularios dentro del perfil */
+.section .profile-form .form-group {
     position: relative;
-    margin-bottom: 30px;
-}
-
-.profile-form label {
-    display: block;
-    margin-bottom: 20px;
-    color: rgba(6, 2, 34, 0.1);
-    font-size: 14px;
-}
-
-.profile-form input,
-.profile-form textarea {
     width: 100%;
+    height: 50px;
+    margin: 25px 0;
+}
+
+.section .profile-form .form-group input,
+.section .profile-form .form-group textarea {
+    width: 100%;
+    height: 100%;
     background: transparent;
     border: none;
+    outline: none;
     border-bottom: 2px solid rgba(255, 255, 255, 0.2);
-    padding: 10px 0;
-    color: white;
+    padding-right: 23px;
     font-size: 16px;
-    transition: all 0.3s ease;
+    color: #fff;
+    font-weight: 500;
+    transition: .5s;
 }
 
-.profile-form input:focus,
-.profile-form textarea:focus {
+.section .profile-form .form-group textarea {
+    height: 100px;
+    resize: none;
+    padding-top: 10px;
+}
+
+.section .profile-form .form-group label {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.section .profile-form .form-group textarea ~ label {
+    top: 15px;
+}
+
+.section .profile-form .form-group input:focus ~ label,
+.section .profile-form .form-group textarea:focus ~ label,
+.section .profile-form .form-group input:valid ~ label,
+.section .profile-form .form-group textarea:valid ~ label {
+    top: -5px;
+    color: #0ef;
+}
+
+.section .profile-form .form-group input:focus,
+.section .profile-form .form-group textarea:focus,
+.section .profile-form .form-group input:valid,
+.section .profile-form .form-group textarea:valid {
     border-bottom-color: #0ef;
-    outline: none;
 }
 
 /* Estilos para la lista de actividad */

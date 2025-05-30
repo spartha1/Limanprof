@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-05-2025 a las 03:55:14
+-- Tiempo de generación: 30-05-2025 a las 21:56:33
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `liman_prof`
+-- Base de datos: `limanprof`
 --
 
 -- --------------------------------------------------------
@@ -31,13 +31,6 @@ CREATE TABLE `administradores` (
   `id` int(11) NOT NULL,
   `usuario_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `administradores`
---
-
-INSERT INTO `administradores` (`id`, `usuario_id`) VALUES
-(1, 4);
 
 -- --------------------------------------------------------
 
@@ -73,11 +66,17 @@ CREATE TABLE `carrito_compras` (
 
 CREATE TABLE `cotizaciones` (
   `id` int(11) NOT NULL,
-  `usuario_id` int(11) DEFAULT NULL,
+  `usuario_id` int(11) NOT NULL,
   `servicio_id` int(11) NOT NULL,
-  `cantidad` int(11) NOT NULL DEFAULT 1,
-  `total_estimado` decimal(10,2) NOT NULL,
-  `fecha` timestamp NOT NULL DEFAULT current_timestamp()
+  `area_estimada` decimal(10,2) DEFAULT NULL,
+  `fecha_deseada` date DEFAULT NULL,
+  `frecuencia_servicio` varchar(50) DEFAULT NULL,
+  `descripcion_necesidades` text DEFAULT NULL,
+  `precio_estimado` decimal(10,2) DEFAULT NULL,
+  `estado` enum('pendiente','enviada','aceptada','rechazada') DEFAULT 'pendiente',
+  `fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp(),
+  `fecha_respuesta` timestamp NULL DEFAULT NULL,
+  `notas_internas` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -169,13 +168,6 @@ CREATE TABLE `inventario` (
   `ultima_actualizacion` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `inventario`
---
-
-INSERT INTO `inventario` (`id_producto`, `cantidad_disponible`, `ultima_actualizacion`) VALUES
-(1, 30, '2025-04-02 06:32:42');
-
 -- --------------------------------------------------------
 
 --
@@ -223,6 +215,31 @@ CREATE TABLE `ordenes` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `permisos`
+--
+
+CREATE TABLE `permisos` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(50) NOT NULL,
+  `descripcion` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `precios_zona`
+--
+
+CREATE TABLE `precios_zona` (
+  `id` int(11) NOT NULL,
+  `servicio_id` int(11) NOT NULL,
+  `zona` varchar(100) NOT NULL,
+  `factor_precio` decimal(4,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `productos`
 --
 
@@ -235,12 +252,29 @@ CREATE TABLE `productos` (
   `imagen` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
 --
--- Volcado de datos para la tabla `productos`
+-- Estructura de tabla para la tabla `roles`
 --
 
-INSERT INTO `productos` (`id`, `nombre`, `descripcion`, `precio`, `stock`, `imagen`) VALUES
-(1, 'pinol pinol', 'aromatiza limpia y desinfecta', 50.00, 30, NULL);
+CREATE TABLE `roles` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(50) NOT NULL,
+  `descripcion` text DEFAULT NULL,
+  `fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `rol_permiso`
+--
+
+CREATE TABLE `rol_permiso` (
+  `rol_id` int(11) NOT NULL,
+  `permiso_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -252,8 +286,25 @@ CREATE TABLE `servicios` (
   `id` int(11) NOT NULL,
   `nombre` varchar(100) NOT NULL,
   `descripcion` text NOT NULL,
-  `precio` decimal(10,2) NOT NULL,
-  `categoria` enum('limpieza','mantenimiento','jardinería','especializados') NOT NULL
+  `requisitos` text NOT NULL,
+  `precio_base` decimal(10,2) NOT NULL,
+  `duracion_base` int(11) NOT NULL,
+  `categoria` enum('limpieza','mantenimiento','jardinería','especializados') NOT NULL,
+  `imagen_path` varchar(255) DEFAULT 'img/servicios/default.jpg',
+  `estado` enum('activo','inactivo','suspendido') NOT NULL DEFAULT 'activo',
+  `area_minima` decimal(10,2) DEFAULT NULL,
+  `personal_requerido` int(11) DEFAULT 1,
+  `tiempo_preparacion` int(11) DEFAULT 0,
+  `frecuencia_recomendada` varchar(50) DEFAULT NULL,
+  `equipos_incluidos` text DEFAULT NULL,
+  `materiales_incluidos` text DEFAULT NULL,
+  `garantia_servicio` varchar(100) DEFAULT NULL,
+  `cobertura_geografica` text DEFAULT NULL,
+  `horarios_disponibles` text DEFAULT NULL,
+  `fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp(),
+  `fecha_actualizacion` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
+  `created_by` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -267,7 +318,15 @@ CREATE TABLE `solicitudes_servicio` (
   `usuario_id` int(11) NOT NULL,
   `servicio_id` int(11) NOT NULL,
   `fecha_solicitud` timestamp NOT NULL DEFAULT current_timestamp(),
-  `estado` enum('pendiente','en proceso','completado','cancelado') DEFAULT 'pendiente'
+  `fecha_programada` datetime NOT NULL,
+  `direccion_servicio` text NOT NULL,
+  `area_servicio` decimal(10,2) DEFAULT NULL,
+  `instrucciones_especiales` text DEFAULT NULL,
+  `estado` enum('pendiente','confirmada','en_proceso','completada','cancelada') DEFAULT 'pendiente',
+  `personal_asignado` int(11) DEFAULT NULL,
+  `precio_final` decimal(10,2) NOT NULL,
+  `comentarios_cliente` text DEFAULT NULL,
+  `calificacion` int(11) DEFAULT NULL CHECK (`calificacion` between 1 and 5)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -283,19 +342,14 @@ CREATE TABLE `usuarios` (
   `codigo_pais` varchar(5) NOT NULL,
   `telefono` varchar(10) NOT NULL,
   `contraseña` varchar(255) NOT NULL,
-  `tipo` enum('usuario','admin') DEFAULT 'usuario',
+  `tipo` varchar(50) DEFAULT NULL,
   `fecha_registro` timestamp NOT NULL DEFAULT current_timestamp(),
-  `foto_perfil` varchar(255) DEFAULT 'default.png'
+  `foto_perfil` varchar(255) DEFAULT 'default.png',
+  `avatar_path` varchar(255) DEFAULT 'img/avatars/default-avatar.jpg',
+  `cover_path` varchar(255) DEFAULT 'img/covers/default-cover.jpg',
+  `biografia` text DEFAULT 'Usuario de Limanprof',
+  `ultima_conexion` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `usuarios`
---
-
-INSERT INTO `usuarios` (`id`, `nombre_usuario`, `email`, `codigo_pais`, `telefono`, `contraseña`, `tipo`, `fecha_registro`, `foto_perfil`) VALUES
-(2, 'changocioso', 'changocioso@gmail.com ', '', '', 'changomicida', 'usuario', '2025-02-13 22:02:18', 'default.png'),
-(3, 'pepe', 'pepe@gmail.com ', '', '', 'pancho', 'usuario', '2025-02-14 00:46:35', 'default.png'),
-(4, 'leinad', 'leinadspartha@gsmail.com', '+52', '5510548020', 'sueminencia', 'admin', '2025-03-05 00:56:52', 'default.png');
 
 --
 -- Índices para tablas volcadas
@@ -313,7 +367,7 @@ ALTER TABLE `administradores`
 --
 ALTER TABLE `agenda_servicios`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `solicitud_id` (`solicitud_id`);
+  ADD KEY `fk_agenda_solicitud` (`solicitud_id`);
 
 --
 -- Indices de la tabla `carrito_compras`
@@ -328,8 +382,8 @@ ALTER TABLE `carrito_compras`
 --
 ALTER TABLE `cotizaciones`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_cotizacion_usuario` (`usuario_id`),
-  ADD KEY `fk_cotizacion_servicio` (`servicio_id`);
+  ADD KEY `fk_cot_usuario` (`usuario_id`),
+  ADD KEY `fk_cot_servicio` (`servicio_id`);
 
 --
 -- Indices de la tabla `datos_facturacion`
@@ -337,31 +391,31 @@ ALTER TABLE `cotizaciones`
 ALTER TABLE `datos_facturacion`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `rfc` (`rfc`),
-  ADD UNIQUE KEY `usuario_id` (`usuario_id`);
+  ADD KEY `fk_df_usuario` (`usuario_id`);
 
 --
 -- Indices de la tabla `detalles_factura`
 --
 ALTER TABLE `detalles_factura`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_detalle_factura_factura` (`factura_id`),
-  ADD KEY `fk_detalle_factura_servicio` (`servicio_id`);
+  ADD KEY `fk_df_factura` (`factura_id`),
+  ADD KEY `fk_df_servicio` (`servicio_id`);
 
 --
 -- Indices de la tabla `detalles_orden`
 --
 ALTER TABLE `detalles_orden`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `orden_id` (`orden_id`),
-  ADD KEY `producto_id` (`producto_id`);
+  ADD KEY `fk_do_orden` (`orden_id`),
+  ADD KEY `fk_do_producto` (`producto_id`);
 
 --
 -- Indices de la tabla `facturas`
 --
 ALTER TABLE `facturas`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `usuario_id` (`usuario_id`),
-  ADD KEY `datos_facturacion_id` (`datos_facturacion_id`);
+  ADD KEY `fk_factura_usuario` (`usuario_id`),
+  ADD KEY `fk_factura_datos` (`datos_facturacion_id`);
 
 --
 -- Indices de la tabla `historial_estados`
@@ -386,14 +440,27 @@ ALTER TABLE `mensajes_contacto`
 --
 ALTER TABLE `notificaciones`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `usuario_id` (`usuario_id`);
+  ADD KEY `fk_notificacion_usuario` (`usuario_id`);
 
 --
 -- Indices de la tabla `ordenes`
 --
 ALTER TABLE `ordenes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `permisos`
+--
+ALTER TABLE `permisos`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_orden_usuario` (`usuario_id`);
+  ADD UNIQUE KEY `nombre` (`nombre`);
+
+--
+-- Indices de la tabla `precios_zona`
+--
+ALTER TABLE `precios_zona`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_precio_servicio` (`servicio_id`);
 
 --
 -- Indices de la tabla `productos`
@@ -402,28 +469,45 @@ ALTER TABLE `productos`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `nombre` (`nombre`);
+
+--
+-- Indices de la tabla `rol_permiso`
+--
+ALTER TABLE `rol_permiso`
+  ADD PRIMARY KEY (`rol_id`,`permiso_id`),
+  ADD KEY `fk_permiso` (`permiso_id`);
+
+--
 -- Indices de la tabla `servicios`
 --
 ALTER TABLE `servicios`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_categoria` (`categoria`),
+  ADD KEY `idx_estado` (`estado`),
+  ADD KEY `fk_servicio_creador` (`created_by`),
+  ADD KEY `fk_servicio_editor` (`updated_by`);
 
 --
 -- Indices de la tabla `solicitudes_servicio`
 --
 ALTER TABLE `solicitudes_servicio`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_solicitud_usuario` (`usuario_id`),
-  ADD KEY `fk_solicitud_servicio` (`servicio_id`);
+  ADD KEY `fk_ss_usuario` (`usuario_id`),
+  ADD KEY `fk_ss_servicio` (`servicio_id`),
+  ADD KEY `fk_ss_personal` (`personal_asignado`);
 
 --
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `nombre_usuario` (`nombre_usuario`),
   ADD UNIQUE KEY `email` (`email`),
-  ADD UNIQUE KEY `email_2` (`email`),
-  ADD KEY `idx_email` (`email`);
+  ADD KEY `fk_usuario_rol` (`tipo`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -433,7 +517,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `administradores`
 --
 ALTER TABLE `administradores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `agenda_servicios`
@@ -502,10 +586,28 @@ ALTER TABLE `ordenes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `permisos`
+--
+ALTER TABLE `permisos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `precios_zona`
+--
+ALTER TABLE `precios_zona`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `servicios`
@@ -523,7 +625,7 @@ ALTER TABLE `solicitudes_servicio`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas
@@ -533,90 +635,100 @@ ALTER TABLE `usuarios`
 -- Filtros para la tabla `administradores`
 --
 ALTER TABLE `administradores`
-  ADD CONSTRAINT `administradores_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `fk_admin_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `agenda_servicios`
 --
 ALTER TABLE `agenda_servicios`
-  ADD CONSTRAINT `agenda_servicios_ibfk_1` FOREIGN KEY (`solicitud_id`) REFERENCES `solicitudes_servicio` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fk_agenda_solicitud` FOREIGN KEY (`solicitud_id`) REFERENCES `solicitudes_servicio` (`id`);
 
 --
 -- Filtros para la tabla `carrito_compras`
 --
 ALTER TABLE `carrito_compras`
-  ADD CONSTRAINT `carrito_compras_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `carrito_compras_ibfk_2` FOREIGN KEY (`producto_id`) REFERENCES `productos` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_carrito_producto` FOREIGN KEY (`producto_id`) REFERENCES `productos` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_carrito_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fk_carrito_producto` FOREIGN KEY (`producto_id`) REFERENCES `productos` (`id`),
+  ADD CONSTRAINT `fk_carrito_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`);
 
 --
 -- Filtros para la tabla `cotizaciones`
 --
 ALTER TABLE `cotizaciones`
-  ADD CONSTRAINT `cotizaciones_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL,
-  ADD CONSTRAINT `cotizaciones_ibfk_2` FOREIGN KEY (`servicio_id`) REFERENCES `servicios` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_cotizacion_servicio` FOREIGN KEY (`servicio_id`) REFERENCES `servicios` (`id`),
-  ADD CONSTRAINT `fk_cotizacion_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL;
+  ADD CONSTRAINT `fk_cot_servicio` FOREIGN KEY (`servicio_id`) REFERENCES `servicios` (`id`),
+  ADD CONSTRAINT `fk_cot_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`);
 
 --
 -- Filtros para la tabla `datos_facturacion`
 --
 ALTER TABLE `datos_facturacion`
-  ADD CONSTRAINT `datos_facturacion_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_facturacion_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fk_df_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`);
 
 --
 -- Filtros para la tabla `detalles_factura`
 --
 ALTER TABLE `detalles_factura`
-  ADD CONSTRAINT `detalles_factura_ibfk_1` FOREIGN KEY (`factura_id`) REFERENCES `facturas` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `detalles_factura_ibfk_2` FOREIGN KEY (`servicio_id`) REFERENCES `servicios` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_detalle_factura_factura` FOREIGN KEY (`factura_id`) REFERENCES `facturas` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_detalle_factura_servicio` FOREIGN KEY (`servicio_id`) REFERENCES `servicios` (`id`);
+  ADD CONSTRAINT `fk_df_factura` FOREIGN KEY (`factura_id`) REFERENCES `facturas` (`id`),
+  ADD CONSTRAINT `fk_df_servicio` FOREIGN KEY (`servicio_id`) REFERENCES `servicios` (`id`);
 
 --
 -- Filtros para la tabla `detalles_orden`
 --
 ALTER TABLE `detalles_orden`
-  ADD CONSTRAINT `detalles_orden_ibfk_1` FOREIGN KEY (`orden_id`) REFERENCES `ordenes` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `detalles_orden_ibfk_2` FOREIGN KEY (`producto_id`) REFERENCES `productos` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fk_do_orden` FOREIGN KEY (`orden_id`) REFERENCES `ordenes` (`id`),
+  ADD CONSTRAINT `fk_do_producto` FOREIGN KEY (`producto_id`) REFERENCES `productos` (`id`);
 
 --
 -- Filtros para la tabla `facturas`
 --
 ALTER TABLE `facturas`
-  ADD CONSTRAINT `facturas_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `facturas_ibfk_2` FOREIGN KEY (`datos_facturacion_id`) REFERENCES `datos_facturacion` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fk_factura_datos` FOREIGN KEY (`datos_facturacion_id`) REFERENCES `datos_facturacion` (`id`),
+  ADD CONSTRAINT `fk_factura_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`);
 
 --
 -- Filtros para la tabla `inventario`
 --
 ALTER TABLE `inventario`
-  ADD CONSTRAINT `inventario_ibfk_1` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id`);
+  ADD CONSTRAINT `fk_inventario_producto` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id`);
 
 --
 -- Filtros para la tabla `notificaciones`
 --
 ALTER TABLE `notificaciones`
-  ADD CONSTRAINT `notificaciones_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fk_notificacion_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`);
 
 --
--- Filtros para la tabla `ordenes`
+-- Filtros para la tabla `precios_zona`
 --
-ALTER TABLE `ordenes`
-  ADD CONSTRAINT `fk_orden_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `ordenes_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE;
+ALTER TABLE `precios_zona`
+  ADD CONSTRAINT `fk_precio_servicio` FOREIGN KEY (`servicio_id`) REFERENCES `servicios` (`id`);
+
+--
+-- Filtros para la tabla `rol_permiso`
+--
+ALTER TABLE `rol_permiso`
+  ADD CONSTRAINT `fk_permiso` FOREIGN KEY (`permiso_id`) REFERENCES `permisos` (`id`),
+  ADD CONSTRAINT `fk_rol` FOREIGN KEY (`rol_id`) REFERENCES `roles` (`id`);
+
+--
+-- Filtros para la tabla `servicios`
+--
+ALTER TABLE `servicios`
+  ADD CONSTRAINT `fk_servicio_creador` FOREIGN KEY (`created_by`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL,
+  ADD CONSTRAINT `fk_servicio_editor` FOREIGN KEY (`updated_by`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL;
 
 --
 -- Filtros para la tabla `solicitudes_servicio`
 --
 ALTER TABLE `solicitudes_servicio`
-  ADD CONSTRAINT `fk_solicitud_servicio` FOREIGN KEY (`servicio_id`) REFERENCES `servicios` (`id`),
-  ADD CONSTRAINT `fk_solicitud_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `solicitudes_servicio_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `solicitudes_servicio_ibfk_2` FOREIGN KEY (`servicio_id`) REFERENCES `servicios` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fk_ss_personal` FOREIGN KEY (`personal_asignado`) REFERENCES `usuarios` (`id`),
+  ADD CONSTRAINT `fk_ss_servicio` FOREIGN KEY (`servicio_id`) REFERENCES `servicios` (`id`),
+  ADD CONSTRAINT `fk_ss_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`);
+
+--
+-- Filtros para la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD CONSTRAINT `fk_usuario_rol` FOREIGN KEY (`tipo`) REFERENCES `roles` (`nombre`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

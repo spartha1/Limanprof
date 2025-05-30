@@ -31,18 +31,20 @@ if (!isset($_SESSION['id']) || empty($_SESSION['id'])) {
         <div class="profile-header">
             <div class="profile-cover">
                 <img src="<?php echo htmlspecialchars($usuario['cover_path'] ?? 'img/covers/default-cover.jpg'); ?>" alt="Portada" class="cover-img">
-                <div class="change-cover">
+                <div class="change-cover" onclick="document.getElementById('coverInput').click();">
                     <i class='bx bx-camera'></i>
                     <span>Cambiar portada</span>
                 </div>
+                <input type="file" id="coverInput" style="display: none;" accept="image/*">
             </div>
             <div class="profile-avatar">
                 <img src="<?php echo htmlspecialchars($usuario['avatar_path'] ?? 'img/avatars/default-avatar.jpg'); ?>" 
                      alt="<?php echo htmlspecialchars($usuario['nombre_usuario']); ?>" 
                      class="avatar-img">
-                <div class="change-avatar">
+                <div class="change-avatar" onclick="document.getElementById('avatarInput').click();">
                     <i class='bx bx-camera'></i>
                 </div>
+                <input type="file" id="avatarInput" style="display: none;" accept="image/*">
             </div>
         </div>
 
@@ -89,20 +91,20 @@ if (!isset($_SESSION['id']) || empty($_SESSION['id'])) {
                     <div class="section-content">
                         <form class="profile-form">
                             <div class="form-group">
+                                <input type="text" value="<?php echo $usuario['nombre_usuario']; ?>" required disabled>
                                 <label>Nombre Completo</label>
-                                <input type="text" value="<?php echo $usuario['nombre_usuario']; ?>" disabled>
                             </div>
                             <div class="form-group">
+                                <input type="email" value="<?php echo $usuario['email']; ?>" required disabled>
                                 <label>Email</label>
-                                <input type="email" value="<?php echo $usuario['email']; ?>" disabled>
                             </div>
                             <div class="form-group">
+                                <input type="tel" value="<?php echo $usuario['telefono']; ?>" required disabled>
                                 <label>Teléfono</label>
-                                <input type="tel" value="<?php echo $usuario['telefono']; ?>" disabled>
                             </div>
                             <div class="form-group">
+                                <textarea required disabled><?php echo $usuario['biografia'] ?? 'Usuario de Limanprof'; ?></textarea>
                                 <label>Biografía</label>
-                                <textarea disabled>Usuario de Limanprof</textarea>
                             </div>
                         </form>
                     </div>
@@ -133,24 +135,24 @@ if (!isset($_SESSION['id']) || empty($_SESSION['id'])) {
         <h2>Editar Perfil</h2>
         <form id="editProfileForm" class="profile-form">
             <div class="form-group">
-                <label>Nombre de Usuario</label>
                 <input type="text" name="nombre_usuario" value="<?php echo htmlspecialchars($usuario['nombre_usuario']); ?>" required>
+                <label>Nombre de Usuario</label>
             </div>
             <div class="form-group">
-                <label>Email</label>
                 <input type="email" name="email" value="<?php echo htmlspecialchars($usuario['email']); ?>" required>
+                <label>Email</label>
             </div>
             <div class="form-group">
-                <label>Código País</label>
                 <input type="text" name="codigo_pais" value="<?php echo htmlspecialchars($usuario['codigo_pais']); ?>" required>
+                <label>Código País</label>
             </div>
             <div class="form-group">
-                <label>Teléfono</label>
                 <input type="tel" name="telefono" value="<?php echo htmlspecialchars($usuario['telefono']); ?>" required>
+                <label>Teléfono</label>
             </div>
             <div class="form-group">
+                <textarea name="biografia" required><?php echo htmlspecialchars($usuario['biografia']); ?></textarea>
                 <label>Biografía</label>
-                <textarea name="biografia"><?php echo htmlspecialchars($usuario['biografia']); ?></textarea>
             </div>
             <div class="form-actions">
                 <button type="submit" class="btn-form">Guardar Cambios</button>
@@ -167,16 +169,16 @@ if (!isset($_SESSION['id']) || empty($_SESSION['id'])) {
         <h2>Cambiar Contraseña</h2>
         <form id="passwordForm" class="profile-form">
             <div class="form-group">
-                <label>Contraseña Actual</label>
                 <input type="password" name="current_password" required>
+                <label>Contraseña Actual</label>
             </div>
             <div class="form-group">
-                <label>Nueva Contraseña</label>
                 <input type="password" name="new_password" required>
+                <label>Nueva Contraseña</label>
             </div>
             <div class="form-group">
-                <label>Confirmar Contraseña</label>
                 <input type="password" name="confirm_password" required>
+                <label>Confirmar Contraseña</label>
             </div>
             <div class="form-actions">
                 <button type="submit" class="btn-form">Cambiar Contraseña</button>
@@ -251,6 +253,45 @@ document.getElementById('passwordForm').addEventListener('submit', function(e) {
         }
     });
 });
+
+document.getElementById('coverInput').addEventListener('change', function(e) {
+    handleImageUpload('cover', this.files[0]);
+});
+
+document.getElementById('avatarInput').addEventListener('change', function(e) {
+    handleImageUpload('avatar', this.files[0]);
+});
+
+function handleImageUpload(type, file) {
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append('type', type);
+    formData.append('image', file);
+
+    fetch('process/upload_image.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            if (type === 'avatar') {
+                document.querySelector('.avatar-img').src = data.path;
+            } else {
+                document.querySelector('.cover-img').src = data.path;
+            }
+            // Mostrar mensaje de éxito
+            alert('Imagen actualizada correctamente');
+        } else {
+            alert(data.message || 'Error al subir la imagen');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Error al subir la imagen');
+    });
+}
 </script>
 
 <?php

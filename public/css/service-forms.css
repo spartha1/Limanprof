@@ -1,0 +1,120 @@
+.service-form-container {
+    max-width: 900px;
+    width: 100%;
+    background: rgba(8, 27, 41, 0.7);
+    backdrop-filter: blur(5px);
+    border: 2px solid #0ef;
+    box-shadow: 0 0 25px #0ef;
+    border-radius: 10px;
+    padding: 40px;
+    margin: 30px auto;
+}
+
+.service-form .form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.service-form .form-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.service-form .full-width {
+    grid-column: 1 / -1;
+}
+
+.service-form .form-group input,
+.service-form .form-group select,
+.service-form .form-group textarea {
+    width: 100%;
+    padding: 10px 0;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+    color: #fff;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.service-form .form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.service-form .form-group label {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #fff;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.service-form .form-group textarea ~ label {
+    top: 10px;
+    transform: none;
+}
+
+.service-form .form-group input:focus ~ label,
+.service-form .form-group select:focus ~ label,
+.service-form .form-group textarea:focus ~ label,
+.service-form .form-group input:valid ~ label,
+.service-form .form-group select:valid ~ label,
+.service-form .form-group textarea:valid ~ label {
+    top: -20px;
+    font-size: 14px;
+    color: #0ef;
+}
+
+.service-form .form-group input:focus,
+.service-form .form-group select:focus,
+.service-form .form-group textarea:focus {
+    border-bottom-color: #0ef;
+}
+
+.service-form .form-group textarea:focus {
+    border-color: #0ef;
+}
+
+.service-form .form-actions {
+    display: flex;
+    gap: 20px;
+    justify-content: flex-end;
+    margin-top: 40px;
+}
+
+.service-form .btn-form {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 150px;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .service-form .form-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .service-form-container {
+        padding: 20px;
+        margin: 20px;
+    }
+
+    .service-form .form-actions {
+        flex-direction: column;
+    }
+
+    .service-form .btn-form {
+        width: 100%;
+    }
+}
