@@ -56,19 +56,19 @@
 }
 
 .card-item:nth-child(1)::before {
-    background-image: url('/Limanprof/public/img/servicios/Limpieza-Elevador.webp');
+    background-image: url('/public/img/servicios/Limpieza-Elevador.webp');
 }
 
 .card-item:nth-child(2)::before {
-    background-image: url('/Limanprof/public/img/servicios/Limpieza-juegos-2.webp');
+    background-image: url('/public/img/servicios/Limpieza-juegos-2.webp');
 }
 
 .card-item:nth-child(3)::before {
-    background-image: url('/Limanprof/public/img/servicios/Mantenimiento.webp');
+    background-image: url('/public/img/servicios/Mantenimiento.webp');
 }
 
 .card-item:nth-child(4)::before {
-    background-image: url('/Limanprof/public/img/servicios/lavado.webp');
+    background-image: url('/public/img/servicios/lavado.webp');
 }
 
 .client-image {

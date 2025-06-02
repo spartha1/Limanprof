@@ -9,8 +9,8 @@ header("Refresh: 5; url=../index.php");
 <head>
     <meta charset="UTF-8">
     <title>Redirigiendo a Limanprofnprof</title>
-    <link rel="stylesheet" href="/Limanprof/public/css/style.css">
-    <link rel="stylesheet" href="/Limanprof/public/css/nosotros.css">
+    <link rel="stylesheet" href="/public/css/style.css">
+    <link rel="stylesheet" href="/public/css/nosotros.css">
     <style>
         body {
             margin: 0;
@@ -61,7 +61,7 @@ header("Refresh: 5; url=../index.php");
 
 <body>
     <section>
-        <img src="/Limanprof/public/img/logoLimanprofnprofSB.png" alt="Limanprofnprof Logo" class="logo">
+        <img src="/public/img/logoLimanprofnprofSB.png" alt="Limanprofnprof Logo" class="logo">
 
         <div class="loader"></div>
         <div class="text"><span>Redirigiendo a la página principal...</span></div>

@@ -10,8 +10,8 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Limanprofnprof</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="/Limanprof/public/css/style_users.css">
-    <link rel="stylesheet" href="/Limanprof/public/css/dashboard.css">
+    <link rel="stylesheet" href="/public/css/style_users.css">
+    <link rel="stylesheet" href="/public/css/dashboard.css">
     <link href="/img/Icono.png" rel="icon" type="image/x-icon">
 </head>
 
@@ -20,7 +20,7 @@ session_start();
     if ($_SESSION['tipo'] == "usuario") {
     ?>
         <header class="header">
-            <a href="#"><img class="logo" src="/Limanprof/public/img/logoLimanprofnprofSB.png" alt="Logo de Limanprofnprof"></a>
+            <a href="#"><img class="logo" src="/public/img/logoLimanprofnprofSB.png" alt="Logo de Limanprofnprof"></a>
 
             <section id="content">
                 <!-- NAVBAR -->
@@ -227,7 +227,7 @@ session_start();
             <div class="container">
                 <div class="wrapper">
                     <div class="footer-widget">
-                        <a href=""><img class="logo" src="/Limanprof/public/img/logoLimanprofnprofSB.png" alt="Logo de Limanprofnprof"></a>
+                        <a href=""><img class="logo" src="/public/img/logoLimanprofnprofSB.png" alt="Logo de Limanprofnprof"></a>
                         <p>No somos una opcion, Somos la solución
                         </p>
                         <ul class="social_icon">

@@ -20,7 +20,7 @@ session_start();
     if ($_SESSION['tipo'] == "admin") {
     ?>
         <header class="header">
-            <a href="#"><img class="logo" src="/Limanprof/public/img/logoLimanprofSB.png" alt="Logo de Limanprofnprof"></a>
+            <a href="#"><img class="logo" src="/public/img/logoLimanprofSB.png" alt="Logo de Limanprofnprof"></a>
 
             <section id="content">
                 <!-- NAVBAR -->
@@ -151,7 +151,7 @@ session_start();
             <div class="container">
                 <div class="wrapper">
                     <div class="footer-widget">
-                        <a href=""><img class="logo" src="/Limanprof/public/img/logoLimanprofSB.png" alt="Logo de Limanprofnprof"></a>
+                        <a href=""><img class="logo" src="/public/img/logoLimanprofSB.png" alt="Logo de Limanprofnprof"></a>
                         <p>No somos una opcion, Somos la solución
                         </p>
                         <ul class="social_icon">
