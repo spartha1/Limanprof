@@ -4,7 +4,7 @@
         "nombre": "Antibacterial",
         "precio": 250,
         "categoria": "Limpieza",
-        "imagen": "/public/img/Productos/antibacterial.webp"
+        "imagen": "/Limanprof/Public/img/Productos/antibacterial.webp"
     },
 
     {
@@ -12,7 +12,7 @@
         "nombre": "Botas antiderrapantes",
         "precio": 180,
         "categoria": "Limpieza",
-        "imagen": "/public/img/Productos/botas.webp"
+        "imagen": "/Limanprof/Public/img/Productos/botas.webp"
     },
 
     {
@@ -20,7 +20,7 @@
         "nombre": "Cepillo para WC",
         "precio": 70,
         "categoria": "Limpieza",
-        "imagen": "/public/img/Productos/cepillowc.webp"
+        "imagen": "/Limanprof/Public/img/Productos/cepillowc.webp"
     },
 
     {
@@ -28,7 +28,7 @@
         "nombre": "Cera para losas",
         "precio": 400,
         "categoria": "Limpieza",
-        "imagen": "/public/img/Productos/cera.jpeg"
+        "imagen": "/Limanprof/Public/img/Productos/cera.jpeg"
     },
 
     {
@@ -36,7 +36,7 @@
         "nombre": "Cloro",
         "precio": 500,
         "categoria": "Limpieza",
-        "imagen": "/public/img/Productos/cloro.webp"
+        "imagen": "/Limanprof/Public/img/Productos/cloro.webp"
     },
 
     {
@@ -44,7 +44,7 @@
         "nombre": "Cubeta Exprimidor",
         "precio": 150,
         "categoria": "Limpieza",
-        "imagen": "/public/img/Productos/antibacterial.webp"
+        "imagen": "/Limanprof/Public/img/Productos/antibacterial.webp"
     },
 
     {
@@ -52,7 +52,7 @@
         "nombre": "Desinfectante",
         "precio": 300,
         "categoria": "Limpieza",
-        "imagen": "/public/img/Productos/desinfectante.webp"
+        "imagen": "/Limanprof/Public/img/Productos/desinfectante.webp"
     },
 
     {
@@ -60,7 +60,7 @@
         "nombre": "Detergente",
         "precio": 550,
         "categoria": "Limpieza",
-        "imagen": "/public/img/Productos/desinfectante.webp"
+        "imagen": "/Limanprof/Public/img/Productos/desinfectante.webp"
     },
 
     {
@@ -68,7 +68,7 @@
         "nombre": "Escobas",
         "precio": 65,
         "categoria": "Limpieza",
-        "imagen": "/public/img/Productos/escoba.jpeg"
+        "imagen": "/Limanprof/Public/img/Productos/escoba.jpeg"
     },
 
     {
@@ -76,7 +76,7 @@
         "nombre": "Esponjas",
         "precio": 50,
         "categoria": "Limpieza",
-        "imagen": "/public/img/Productos/esponja.webp"
+        "imagen": "/Limanprof/Public/img/Productos/esponja.webp"
     },
 
     {
@@ -84,7 +84,7 @@
         "nombre": "Fertilizante",
         "precio": 300,
         "categoria": "Jardineria",
-        "imagen": "/public/img/Productos/fertilizante.jpg"
+        "imagen": "/Limanprof/Public/img/Productos/fertilizante.jpg"
     },
 
     {
@@ -92,7 +92,7 @@
         "nombre": "Fungicida",
         "precio": 480,
         "categoria": "Jardineria",
-        "imagen": "/public/img/Productos/fungicida.webp"
+        "imagen": "/Limanprof/Public/img/Productos/fungicida.webp"
     },
 
     {
@@ -100,7 +100,7 @@
         "nombre": "Guantes de latex",
         "precio": 180,
         "categoria": "Limpieza",
-        "imagen": "/public/img/Productos/guantes.webp"
+        "imagen": "/Limanprof/Public/img/Productos/guantes.webp"
     },
     
     {
@@ -108,7 +108,7 @@
         "nombre": "Insecticida",
         "precio": 800,
         "categoria": "Jardineria",
-        "imagen": "/public/img/Productos/insecticida.webp"
+        "imagen": "/Limanprof/Public/img/Productos/insecticida.webp"
     },
     
     {
@@ -116,7 +116,7 @@
         "nombre": "Jalador",
         "precio": 80,
         "categoria": "Limpieza",
-        "imagen": "/public/img/Productos/jaladors.webp"
+        "imagen": "/Limanprof/Public/img/Productos/jaladors.webp"
     },
 
     {
@@ -124,7 +124,7 @@
         "nombre": "Limpiador de baños",
         "precio": 200,
         "categoria": "Limpieza",
-        "imagen": "/public/img/Productos/limpia_baños.webp"
+        "imagen": "/Limanprof/Public/img/Productos/limpia_baños.webp"
     },
 
     {
@@ -132,7 +132,7 @@
         "nombre": "Limpiador de superficies",
         "precio": 300,
         "categoria": "Limpieza",
-        "imagen": "/public/img/Productos/limpiador.jpg"
+        "imagen": "/Limanprof/Public/img/Productos/limpiador.jpg"
     },
 
     {
@@ -140,7 +140,7 @@
         "nombre": "Pastilla para WC",
         "precio": 150,
         "categoria": "Limpieza",
-        "imagen": "/public/img/Productos/pastilla.webp"
+        "imagen": "/Limanprof/Public/img/Productos/pastilla.webp"
     },
 
     {
@@ -148,7 +148,7 @@
         "nombre": "Rastrillo para jardineria",
         "precio": 70,
         "categoria": "Jardineria",
-        "imagen": "/public/img/Productos/rastrillo.webp"
+        "imagen": "/Limanprof/Public/img/Productos/rastrillo.webp"
     },
 
     {
@@ -156,7 +156,7 @@
         "nombre": "Tierra",
         "precio": 400,
         "categoria": "Jardineria",
-        "imagen": "/public/img/Productos/tierra.webp"
+        "imagen": "/Limanprof/Public/img/Productos/tierra.webp"
     },
 
     {
@@ -164,7 +164,7 @@
         "nombre": "Tijeas para arbustos",
         "precio": 250,
         "categoria": "Jardineria",
-        "imagen": "/public/img/Productos/tijera poda.webp"
+        "imagen": "/Limanprof/Public/img/Productos/tijera poda.webp"
     },
 
     {
@@ -172,7 +172,7 @@
         "nombre": "Tijeras para jardin",
         "precio": 300,
         "categoria": "Jardineria",
-        "imagen": "/public/img/Productos/tijeras.webp"
+        "imagen": "/Limanprof/Public/img/Productos/tijeras.webp"
     },
 
     {
@@ -180,6 +180,6 @@
         "nombre": "Trapeador",
         "precio": 180,
         "categoria": "Jardineria",
-        "imagen": "/public/img/Productos/trapeador.webp"
+        "imagen": "/Limanprof/Public/img/Productos/trapeador.webp"
     }
 ]

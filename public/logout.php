@@ -15,5 +15,5 @@ if (ini_get("session.use_cookies")) {
 session_destroy();
 
 // Redirigir al inicio de sesión
-header("Location: ../index.php");
+header("Location: ../Limanprof/index.php");
 exit();

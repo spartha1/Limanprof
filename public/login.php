@@ -8,12 +8,12 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Limanprofnprof</title>
-    <link rel="stylesheet" href="/public/css/style.css">
-    <link rel="stylesheet" href="/public/css/login.css">
+    <link rel="stylesheet" href="/Limanprof/public/css/style.css">
+    <link rel="stylesheet" href="/Limanprof/public/css/login.css">
     <!-- Estilos cajas alerta -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <link href="/public/img/Icono.png" rel="icon" type="image/x-icon">
+    <link href="/Limanprof/public/img/Icono.png" rel="icon" type="image/x-icon">
 </head>
 
 <body>
@@ -62,7 +62,7 @@ session_start();
     } else {
     ?>
         <header class="header">
-            <a href="#"><img class="logo" src="/public/img/logoLimanprofSB.png" alt="Logo de Limanprofnprof"></a>
+            <a href="#"><img class="logo" src="/Limanprof/public/img/logoLimanprofSB.png" alt="Logo de Limanprofnprof"></a>
             <input type="checkbox" id="check">
 
             <label for="check" class="icons">
@@ -74,21 +74,21 @@ session_start();
                     </svg></i>
             </label>
             <nav class="menu">
-                <a href="/index.php" style="--i:0;">Inicio</a>
-                <a href="/public/Nosotros.php" style="--i:1;">Nosotros</a>
+                <a href="/Limanprof/Limanprof/index.php" style="--i:0;">Inicio</a>
+                <a href="/Limanprof/public/Nosotros.php" style="--i:1;">Nosotros</a>
                 <!-- Submenu Servicios -->
                 <div class="menu-item">
                     <a href="#" style="--i:2;">Servicios ▼</a>
                     <div class="submenu">
-                        <a href="/public/Limpieza.php" style="--i:3;">Limpieza</a>
-                        <a href="/public/Jardineria.php" style="--i:4;">Jardinería</a>
-                        <a href="/public/Mantenimiento.php" style="--i:5;">Mantenimiento</a>
-                        <a href="/public/Especial.php" style="--i:6;">Especializado</a>
+                        <a href="/Limanprof/public/Limpieza.php" style="--i:3;">Limpieza</a>
+                        <a href="/Limanprof/public/Jardineria.php" style="--i:4;">Jardinería</a>
+                        <a href="/Limanprof/public/Mantenimiento.php" style="--i:5;">Mantenimiento</a>
+                        <a href="/Limanprof/public/Especial.php" style="--i:6;">Especializado</a>
                     </div>
                 </div>
-                <a href="/public/Clientes.php" style="--1:6;">Nuestros clientes</a>
-                <a href="/public/Contacto.php" style="--i:3;">Contacto</a>
-                <a href="/public/login.php" style="--i:4;">Iniciar sesión</a>
+                <a href="/Limanprof/public/Clientes.php" style="--1:6;">Nuestros clientes</a>
+                <a href="/Limanprof/public/Contacto.php" style="--i:3;">Contacto</a>
+                <a href="/Limanprof/public/login.php" style="--i:4;">Iniciar sesión</a>
             </nav>
 
         </header>
@@ -131,37 +131,49 @@ session_start();
 
                 <?php
                 if (isset($_POST['Registrar'])) {
-
-                    if (
-                        empty($_POST['nombre_usuario']) ||
-                        empty($_POST['email']) || empty($_POST['contraseña'])
-                    ) {
+                    if (empty($_POST['nombre_usuario']) || empty($_POST['email']) || empty($_POST['contraseña'])) {
                         echo "<script language='JavaScript'>
-                    alert('Ingresa un dato valido')
-                    location.assign(history.back());
-                    </script>";
+                        alert('Ingresa un dato valido')
+                        location.assign(history.back());
+                        </script>";
                     } else {
-
                         $nombre_usuario = $_POST['nombre_usuario'];
                         $email = $_POST['email'];
                         $contraseña = $_POST['contraseña'];
                         include("../config/config.php");
 
+                        // Verificar si el correo ya existe
+                        $check_email = "SELECT id FROM usuarios WHERE email = ?";
+                        $stmt = $conexion->prepare($check_email);
+                        $stmt->bind_param("s", $email);
+                        $stmt->execute();
+                        $result = $stmt->get_result();
 
-                        // $sql="insert into alumnos (Id_CURP,Ap_Paterno,Ap_Materno,Nombre,Genero,Grupo) values ('".$Id."','".$Ap."','".$Am."','".$N."','".$Genero."','".$Grupo."')";
-                        $sql = "insert into usuarios (nombre_usuario, email, contraseña, tipo) VALUES ('$nombre_usuario', '$email ','$contraseña','usuario')";
-                        $resultado = mysqli_query($conexion, $sql);
-                        if ($resultado == true) {
+                        if ($result->num_rows > 0) {
                             echo "<script language='JavaScript'>
-                    alert('Se ha agregado usuario correctamente')
-                    location.assign('index_usuario.php');
-                    </script>";
+                            alert('Este correo electrónico ya está registrado')
+                            location.assign(history.back());
+                            </script>";
                         } else {
-                            echo "<script language='JavaScript'>
-                    alert('No existe el nombre o password en la BD')
-                    location.assign(history.back());
-                    </script>";
+                            // Insertar nuevo usuario con tipo 'cliente'
+                            $sql = "INSERT INTO usuarios (nombre_usuario, email, contraseña, tipo, codigo_pais, telefono) 
+                                    VALUES (?, ?, ?, 'cliente', '+52', '')";
+                            $stmt = $conexion->prepare($sql);
+                            $stmt->bind_param("sss", $nombre_usuario, $email, $contraseña);
+                            
+                            if ($stmt->execute()) {
+                                echo "<script language='JavaScript'>
+                                alert('Usuario registrado correctamente. Por favor, inicia sesión.')
+                                location.assign('login.php');
+                                </script>";
+                            } else {
+                                echo "<script language='JavaScript'>
+                                alert('Error al registrar: " . $stmt->error . "')
+                                location.assign(history.back());
+                                </script>";
+                            }
                         }
+                        $stmt->close();
                     }
                 } else {
                 ?>
@@ -215,7 +227,7 @@ session_start();
         <div class="container">
             <div class="wrapper">
                 <div class="footer-widget">
-                    <a href=""><img class="logo" src="/public/img/logoLimanprofSB.png" alt="Logo de Limanprofnprof"></a>
+                    <a href=""><img class="logo" src="/Limanprof/public/img/logoLimanprofSB.png" alt="Logo de Limanprofnprof"></a>
                     <p>No somos una opción, somos la solución.
                     </p>
                     <ul class="social_icon">
@@ -234,25 +246,25 @@ session_start();
                 <div class="footer-widget">
                     <h6>Enlaces</h6>
                     <ul class="links">
-                        <li><a href="/index.php">Inicio</a></li>
-                        <li><a href="/public/Nosotros.php">Nosotros</a></li>
+                        <li><a href="/Limanprof/Limanprof/index.php">Inicio</a></li>
+                        <li><a href="/Limanprof/public/Nosotros.php">Nosotros</a></li>
                     </ul>
                 </div>
                 <div class="footer-widget">
                     <h6>Servicios</h6>
                     <ul class="links">
-                        <li><a href="/public/Limpieza.php">Limpieza</a></li>
-                        <li><a href="/public/Mantenimiento.php">Mantenimiento</a></li>
-                        <li><a href="/public/Jardineria.php">Jardinería</a></li>
-                        <li><a href="/public/Especial.php">Especializado</a></li>
+                        <li><a href="/Limanprof/public/Limpieza.php">Limpieza</a></li>
+                        <li><a href="/Limanprof/public/Mantenimiento.php">Mantenimiento</a></li>
+                        <li><a href="/Limanprof/public/Jardineria.php">Jardinería</a></li>
+                        <li><a href="/Limanprof/public/Especial.php">Especializado</a></li>
                     </ul>
                 </div>
                 <div class="footer-widget">
                     <h6>Ayuda &amp; Soporte</h6>
                     <ul class="links">
-                        <li><a href="/public/Contacto.php">Contacto</a></li>
-                        <li><a href="/public/Clientes.php">Nuestros clientes</a></li>
-                        <li><a href="/public/FAQ.php">Pregunstas frecuentes</a></li>
+                        <li><a href="/Limanprof/public/Contacto.php">Contacto</a></li>
+                        <li><a href="/Limanprof/public/Clientes.php">Nuestros clientes</a></li>
+                        <li><a href="/Limanprof/public/FAQ.php">Pregunstas frecuentes</a></li>
                     </ul>
                 </div>
             </div>

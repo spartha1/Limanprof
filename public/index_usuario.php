@@ -20,7 +20,7 @@ session_start();
     if ($_SESSION['tipo'] == "usuario") {
         ?>
     <header class="header">
-        <a href="#"><img class="logo" src="/public/img/logoLimanprofnprofSB.png" alt="Logo de Limanprofnprof"></a>
+        <a href="#"><img class="logo" src="/Limanprof/Public/img/logoLimanprofnprofSB.png" alt="Logo de Limanprofnprof"></a>
         <input type="checkbox" id="check">
 
         <label for="check" class="icons">
@@ -68,7 +68,7 @@ session_start();
         <div class="container">
             <div class="wrapper">
                 <div class="footer-widget">
-                    <a href=""><img class="logo" src="/public/img/logoLimanprofnprofSB.png" alt="Logo de Limanprofnprof"></a>
+                    <a href=""><img class="logo" src="/Limanprof/Public/img/logoLimanprofnprofSB.png" alt="Logo de Limanprofnprof"></a>
                     <p>No somos una opcion, Somos la solución
                     </p>
                     <ul class="social_icon">

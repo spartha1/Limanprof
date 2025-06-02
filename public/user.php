@@ -14,7 +14,7 @@
 <body>
 
     <header class="header">
-        <a href="#"><img class="logo" src="/public/img/logoLimanprofnprofSB.png" alt="Logo de Limanprofnprof"></a>
+        <a href="#"><img class="logo" src="/Limanprof/Public/img/logoLimanprofnprofSB.png" alt="Logo de Limanprofnprof"></a>
         <input type="checkbox" id="check">
 
         <label for="check" class="icons">
@@ -27,20 +27,20 @@
         </label>
         <nav class="menu">
             <a href="index.php" style="--i:0;">Inicio</a>
-            <a href="/public/Nosotros.php" style="--i:1;">Nosotros</a>
+            <a href="/Limanprof/Public/Nosotros.php" style="--i:1;">Nosotros</a>
             <!-- Submenu Servicios -->
             <div class="menu-item">
                 <a href="#" style="--i:2;">Servicios ▼</a>
                 <div class="submenu">
-                    <a href="/public/Limpieza.php" style="--i:3;">Limpieza</a>
-                    <a href="/public/Jardineria.php" style="--i:4;">Jardinería</a>
-                    <a href="/public/Mantenimiento.php" style="--i:5;">Mantenimiento</a>
-                    <a href="/public/Especial.php" style="--i:6;">Especializado</a>
+                    <a href="/Limanprof/Public/Limpieza.php" style="--i:3;">Limpieza</a>
+                    <a href="/Limanprof/Public/Jardineria.php" style="--i:4;">Jardinería</a>
+                    <a href="/Limanprof/Public/Mantenimiento.php" style="--i:5;">Mantenimiento</a>
+                    <a href="/Limanprof/Public/Especial.php" style="--i:6;">Especializado</a>
                 </div>
             </div>
-            <a href="/public/Clientes.php" style="--1:6;">Nuestros clientes</a>
-            <a href="/public/Contacto.php" style="--i:3;">Contacto</a>
-            <a href="/public/login.php" style="--i:4;">Iniciar sesión</a>
+            <a href="/Limanprof/Public/Clientes.php" style="--1:6;">Nuestros clientes</a>
+            <a href="/Limanprof/Public/Contacto.php" style="--i:3;">Contacto</a>
+            <a href="/Limanprof/Public/login.php" style="--i:4;">Iniciar sesión</a>
         </nav>
 
     </header>
@@ -91,7 +91,7 @@
         <div class="container">
             <div class="wrapper">
                 <div class="footer-widget">
-                    <a href=""><img class="logo" src="/public/img/logoLimanprofnprofSB.png" alt="Logo de Limanprofnprof"></a>
+                    <a href=""><img class="logo" src="/Limanprof/Public/img/logoLimanprofnprofSB.png" alt="Logo de Limanprofnprof"></a>
                     <p>No somos una opción, somos la solución.
                     </p>
                     <ul class="social_icon">
@@ -109,7 +109,7 @@
                 <div class="footer-widget">
                     <h6>Enlaces</h6>
                     <ul class="links">
-                        <li><a href="../index.php">Inicio</a></li>
+                        <li><a href="../Limanprof/index.php">Inicio</a></li>
                         <li><a href="Nosotros.php">Nosotros</a></li>
                     </ul>
                 </div>

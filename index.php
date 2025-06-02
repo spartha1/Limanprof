@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Limanprofnprof</title>
-    <link rel="stylesheet" href="/public/css/style.css">
-    <link rel="stylesheet" href="/public/css/video.css">
-    <link rel="stylesheet" href="/public/css/carrucel.css">
-    <link href="/public/img/Icono.png" rel="icon" type="image/x-icon">
+    <link rel="stylesheet" href="/Limanprof/public/css/style.css">
+    <link rel="stylesheet" href="/Limanprof/public/css/video.css">
+    <link rel="stylesheet" href="/Limanprof/public/css/carrucel.css">
+    <link href="/Limanprof/public/img/Icono.png" rel="icon" type="image/x-icon">
 </head>
 
 <body>
@@ -26,30 +26,30 @@
         </label>
         <nav class="menu">
             <a href="index.php" style="--i:0;">Inicio</a>
-            <a href="/public/Nosotros.php" style="--i:1;">Nosotros</a>
+            <a href="/Limanprof/public/Nosotros.php" style="--i:1;">Nosotros</a>
             <!-- Submenu Servicios -->
             <div class="menu-item">
                 <a href="#" style="--i:2;">Servicios ▼</a>
                 <div class="submenu">
-                    <a href="/public/Limpieza.php" style="--i:3;">Limpieza</a>
-                    <a href="/public/Jardineria.php" style="--i:4;">Jardinería</a>
-                    <a href="/public/Mantenimiento.php" style="--i:5;">Mantenimiento</a>
-                    <a href="/public/Especial.php" style="--i:6;">Especializado</a>
+                    <a href="/Limanprof/public/Limpieza.php" style="--i:3;">Limpieza</a>
+                    <a href="/Limanprof/public/Jardineria.php" style="--i:4;">Jardinería</a>
+                    <a href="/Limanprof/public/Mantenimiento.php" style="--i:5;">Mantenimiento</a>
+                    <a href="/Limanprof/public/Especial.php" style="--i:6;">Especializado</a>
                 </div>
             </div>
-            <a href="/public/Clientes.php" style="--1:6;">Nuestros clientes</a>
-            <a href="/public/Contacto.php" style="--i:3;">Contacto</a>
-            <a href="/public/login.php" style="--i:4;">Iniciar sesión</a>
+            <a href="/Limanprof/public/Clientes.php" style="--1:6;">Nuestros clientes</a>
+            <a href="/Limanprof/public/Contacto.php" style="--i:3;">Contacto</a>
+            <a href="/Limanprof/public/login.php" style="--i:4;">Iniciar sesión</a>
         </nav>
 
     </header>
 
     <main>
         <div class="img-index">
-            <img src="/public/img/espacio_limpio.png">
+            <img src="/Limanprof/public/img/espacio_limpio.png">
         </div>
         <div class="video-container swiper">
-            <video src="public/img.mp4" autoplay loop muted playsinline></video>
+            <video src="public/img/LIMANPROF.mp4" autoplay loop muted playsinline></video>
         </div>
         <h2 class="Clientes">Nuestos Servicios:</h2>
         
@@ -59,19 +59,19 @@
             <div class="slider-wrapper">
                 <div class="card-list" id="card-list">
                     <div class="card-item">
-                    <img src="/public/img/servicios/Limpieza-Elevador.webp" alt="" class="client-image" loading="lazy" />
+                    <img src="/Limanprof/public/img/servicios/Limpieza-Elevador.webp" alt="" class="client-image" loading="lazy" />
                         <h3 class="client_name">Limpieza</h3>
                     </div>
                     <div class="card-item">
-                    <img src="/public/img/servicios/Limpieza-juegos-2.webp" alt="" class="client-image" loading="lazy" />
+                    <img src="/Limanprof/public/img/servicios/Limpieza-juegos-2.webp" alt="" class="client-image" loading="lazy" />
                         <h3 class="client_name">Jardinería</h3>
                     </div>
                     <div class="card-item">
-                    <img src="/public/img/servicios/Mantenimiento.webp" alt="" class="client-image" loading="lazy" />
+                    <img src="/Limanprof/public/img/servicios/Mantenimiento.webp" alt="" class="client-image" loading="lazy" />
                         <h3 class="client_name">Mantenimiento</h3>
                     </div>
                     <div class="card-item">
-                    <img src="/public/img/servicios/lavado.webp" alt="" class="client-image" loading="lazy" />
+                    <img src="/Limanprof/public/img/servicios/lavado.webp" alt="" class="client-image" loading="lazy" />
                         <h3 class="client_name">Servicios Especializados</h3>
                     </div>
                 </div>
@@ -90,7 +90,7 @@
         <div class="container">
             <div class="wrapper">
                 <div class="footer-widget">
-                    <a href=""><img class="logo" src="/public/img/logoLimanprofSB.png" alt="Logo de Limanprofnprof"></a>
+                    <a href=""><img class="logo" src="/Limanprof/public/img/logoLimanprofSB.png" alt="Logo de Limanprofnprof"></a>
                     <p>No somos una opción, somos la solución.
                     </p>
                     <ul class="social_icon">
@@ -110,24 +110,24 @@
                     <h6>Enlaces</h6>
                     <ul class="links">
                         <li><a href="index.php">Inicio</a></li>
-                        <li><a href="/public/Nosotros.php">Nosotros</a></li>
+                        <li><a href="/Limanprof/public/Nosotros.php">Nosotros</a></li>
                     </ul>
                 </div>
                 <div class="footer-widget">
                     <h6>Servicios</h6>
                     <ul class="links">
-                        <li><a href="/public/Limpieza.php">Limpieza</a></li>
-                        <li><a href="/public/Mantenimiento.php">Mantenimiento</a></li>
-                        <li><a href="/public/Jardineria.php">Jardinería</a></li>
-                        <li><a href="/public/Especial.php">Especializado</a></li>
+                        <li><a href="/Limanprof/public/Limpieza.php">Limpieza</a></li>
+                        <li><a href="/Limanprof/public/Mantenimiento.php">Mantenimiento</a></li>
+                        <li><a href="/Limanprof/public/Jardineria.php">Jardinería</a></li>
+                        <li><a href="/Limanprof/public/Especial.php">Especializado</a></li>
                     </ul>
                 </div>
                 <div class="footer-widget">
                     <h6>Ayuda &amp; Soporte</h6>
                     <ul class="links">
-                        <li><a href="/public/Contacto.php">Contacto</a></li>
-                        <li><a href="/public/Clientes.php">Nuestros clientes</a></li>
-                        <li><a href="/public/FAQ.php">Pregunstas frecuentes</a></li>
+                        <li><a href="/Limanprof/public/Contacto.php">Contacto</a></li>
+                        <li><a href="/Limanprof/public/Clientes.php">Nuestros clientes</a></li>
+                        <li><a href="/Limanprof/public/FAQ.php">Pregunstas frecuentes</a></li>
                     </ul>
                 </div>
             </div>
@@ -148,10 +148,10 @@
 
             // URLs de destino en orden
             const urls = [
-                "/public/Limpieza.php",
-                "/public/Jardineria.php",
-                "/public/Mantenimiento.php",
-                "/public/Especial.php"
+                "/Limanprof/public/Limpieza.php",
+                "/Limanprof/public/Jardineria.php",
+                "/Limanprof/public/Mantenimiento.php",
+                "/Limanprof/public/Especial.php"
             ];
 
             // Asignar evento de clic a cada tarjeta

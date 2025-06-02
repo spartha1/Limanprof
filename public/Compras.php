@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Compra de articulos</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="/public/css/style_users.css">
-    <link rel="stylesheet" href="/public/css/dashboard.css">
+    <link rel="stylesheet" href="/Limanprof/Public/css/style_users.css">
+    <link rel="stylesheet" href="/Limanprof/Public/css/dashboard.css">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css">
     <link href="/img/Icono.png" rel="icon" type="image/x-icon">
@@ -17,7 +17,7 @@
 <body>
 
     <header class="header">
-        <a href="#"><img class="logo" src="/public/img/logoLimanprofnprofSB.png" alt="Logo de Limanprofnprof"></a>
+        <a href="#"><img class="logo" src="/Limanprof/Public/img/logoLimanprofnprofSB.png" alt="Logo de Limanprofnprof"></a>
         <input type="checkbox" id="check">
         <label for="check" class="icons">
             <i class='bx bx-menu' id="menu-icon"><ion-icon name="menu-outline"></ion-icon></i>
@@ -67,7 +67,7 @@
             <h2>tu carrito (0)</h2>
             <div class="cart-list_items">
                 <div class="items_img">
-                    <img src="/public/img/IconoLimanprofnprofSB.png" alt="compraslogo">
+                    <img src="/Limanprof/Public/img/IconoLimanprofnprofSB.png" alt="compraslogo">
                 </div>
                 <p>Tus porductos apareceran aqui</p>
             </div>
@@ -83,7 +83,7 @@
         <div class="container">
             <div class="wrapper">
                 <div class="footer-widget">
-                    <a href=""><img class="logo" src="/public/img/logoLimanprofnprofSB.png" alt="Logo de Limanprofnprof"></a>
+                    <a href=""><img class="logo" src="/Limanprof/Public/img/logoLimanprofnprofSB.png" alt="Logo de Limanprofnprof"></a>
                     <p>No somos una opción, somos la solución.
                     </p>
                     <ul class="social_icon">
@@ -101,7 +101,7 @@
                 <div class="footer-widget">
                     <h6>Enlaces</h6>
                     <ul class="links">
-                        <li><a href="../index.php">Inicio</a></li>
+                        <li><a href="../Limanprof/index.php">Inicio</a></li>
                         <li><a href="Nosotros.php">Nosotros</a></li>
                     </ul>
                 </div>

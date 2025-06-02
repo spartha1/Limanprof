@@ -1,5 +1,4 @@
 <link rel="stylesheet" href="css/forms.css">
-<link rel="stylesheet" href="css/service-forms.css">
 
 <div class="data-section">
     <div class="data-header">
@@ -13,55 +12,37 @@
         </ul>
     </div>
 
-    <div class="service-form-container">
-        <form id="servicioForm" class="service-form">
-            <div class="form-grid">
-                <div class="form-group">
-                    <input type="text" name="nombre" required>
-                    <label>Nombre del Servicio</label>
-                </div>
-                
-                <div class="form-group">
-                    <select name="categoria" required>
-                        <option value="" selected disabled></option>
-                        <option value="limpieza">Limpieza</option>
-                        <option value="mantenimiento">Mantenimiento</option>
-                        <option value="jardinería">Jardinería</option>
-                        <option value="especializados">Especializados</option>
-                    </select>
-                    <label>Categoría</label>
-                </div>
-
-                <div class="form-group">
-                    <input type="number" name="precio" step="0.01" required>
-                    <label>Precio Base ($)</label>
-                </div>
-
-                <div class="form-group">
-                    <input type="number" name="duracion" required>
-                    <label>Duración (horas)</label>
-                </div>
+    <div class="form-container">
+        <form id="servicioForm" class="profile-form">
+            <div class="form-group">
+                <input type="text" name="nombre" required>
+                <label>Nombre del Servicio</label>
             </div>
-
-            <div class="form-group full-width">
-                <textarea name="descripcion" required rows="4"></textarea>
-                <label>Descripción del Servicio</label>
+            
+            <div class="form-group">
+                <textarea name="descripcion" required></textarea>
+                <label>Descripción</label>
             </div>
-
-            <div class="form-group full-width">
-                <textarea name="requisitos" required rows="3"></textarea>
-                <label>Requisitos y Materiales</label>
+            
+            <div class="form-group">
+                <input type="number" name="precio" step="0.01" required>
+                <label>Precio</label>
             </div>
-
+            
+            <div class="form-group">
+                <select name="categoria" required>
+                    <option value="">Seleccione una categoría</option>
+                    <option value="limpieza">Limpieza</option>
+                    <option value="mantenimiento">Mantenimiento</option>
+                    <option value="jardinería">Jardinería</option>
+                    <option value="especializados">Especializados</option>
+                </select>
+                <label>Categoría</label>
+            </div>
+            
             <div class="form-actions">
-                <button type="submit" class="btn-form">
-                    <i class='bx bx-save'></i>
-                    Guardar Servicio
-                </button>
-                <button type="button" onclick="window.location.href='?page=servicios_lista'" class="btn-form btn-cancel">
-                    <i class='bx bx-x'></i>
-                    Cancelar
-                </button>
+                <button type="submit" class="btn-form">Guardar Servicio</button>
+                <button type="button" onclick="window.location.href='?page=servicios_lista'" class="btn-form btn-cancel">Cancelar</button>
             </div>
         </form>
     </div>
