@@ -103,9 +103,9 @@ session_start();
                     <li>
                         <a href="#"><i class='bx bxs-file-find icon'></i> Cotizaciones <i class='bx bx-chevron-right icon-right'></i></a>
                         <ul class="side-dropdown">
-                            <li><a href="#">Ver Cotizaciones</a></li>
-                            <li><a href="#">Responder Cotización</a></li>
-                            <li><a href="#">Generar Factura</a></li>
+                            <li><a href="?page=admin_cotizaciones">Ver Cotizaciones</a></li>
+                            <li><a href="?page=cotizaciones_pendientes">Cotizaciones Pendientes</a></li>
+                            <li><a href="?page=cotizaciones_historial">Historial</a></li>
                         </ul>
                     </li>
 

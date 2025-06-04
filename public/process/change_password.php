@@ -1,35 +1,39 @@
 <?php
 session_start();
+include("../../config/config.php");
+
 if (!isset($_SESSION['id'])) {
     die(json_encode(['success' => false, 'message' => 'No autorizado']));
 }
 
-include("../../config/config.php");
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $id = $_SESSION['id'];
-    $currentPassword = $_POST['current_password'];
-    $newPassword = $_POST['new_password'];
-    
-    // Verificar contraseña actual
-    $sql = "SELECT id FROM usuarios WHERE id = ? AND contraseña = ?";
-    $stmt = $conexion->prepare($sql);
-    $stmt->bind_param("is", $id, $currentPassword);
-    $stmt->execute();
-    
-    if ($stmt->get_result()->num_rows === 0) {
-        echo json_encode(['success' => false, 'message' => 'Contraseña actual incorrecta']);
-        exit;
-    }
-    
-    // Actualizar contraseña
-    $sql = "UPDATE usuarios SET contraseña = ? WHERE id = ?";
-    $stmt = $conexion->prepare($sql);
-    $stmt->bind_param("si", $newPassword, $id);
-    
-    if ($stmt->execute()) {
-        echo json_encode(['success' => true]);
-    } else {
-        echo json_encode(['success' => false, 'message' => 'Error al actualizar contraseña']);
+    $usuario_id = $_SESSION['id'];
+    $current_password = $_POST['current_password'];
+    $new_password = $_POST['new_password'];
+
+    try {
+        // Verificar contraseña actual
+        $sql = "SELECT contraseña FROM usuarios WHERE id = ?";
+        $stmt = $conexion->prepare($sql);
+        $stmt->bind_param("i", $usuario_id);
+        $stmt->execute();
+        $result = $stmt->get_result()->fetch_assoc();
+
+        if ($result['contraseña'] !== $current_password) {
+            throw new Exception("La contraseña actual es incorrecta");
+        }
+
+        // Actualizar contraseña
+        $sql = "UPDATE usuarios SET contraseña = ? WHERE id = ?";
+        $stmt = $conexion->prepare($sql);
+        $stmt->bind_param("si", $new_password, $usuario_id);
+        
+        if ($stmt->execute()) {
+            echo json_encode(['success' => true]);
+        } else {
+            throw new Exception("Error al actualizar la contraseña");
+        }
+    } catch (Exception $e) {
+        echo json_encode(['success' => false, 'message' => $e->getMessage()]);
     }
 }

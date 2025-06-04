@@ -16,6 +16,7 @@ if (!isset($_SESSION['id']) || empty($_SESSION['id'])) {
 ?>
 
 <link rel="stylesheet" href="css/perfil.css">
+<link rel="stylesheet" href="css/modal.css">
 <div class="content-data">
     <h1 class="title">Mi Perfil</h1>
     <ul class="breadcrumbs">
@@ -99,7 +100,7 @@ if (!isset($_SESSION['id']) || empty($_SESSION['id'])) {
                 <div class="section">
                     <h3>Actividad Reciente</h3>
                     <div class="activity-list">
-                        <?php include 'components/actividad_reciente.php'; ?>
+                        <?php include 'dashboard_user_content/components/actividad_reciente.php'; ?>
                     </div>
                 </div>
             </div>
@@ -108,6 +109,72 @@ if (!isset($_SESSION['id']) || empty($_SESSION['id'])) {
 </div>
 
 <?php include 'components/profile_modals.php'; ?>
+
+<script>
+document.getElementById('editProfileForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    
+    fetch('process/update_profile.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Perfil actualizado correctamente');
+            location.reload();
+        } else {
+            alert(data.message || 'Error al actualizar el perfil');
+        }
+    });
+});
+
+document.getElementById('passwordForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    
+    if (formData.get('new_password') !== formData.get('confirm_password')) {
+        alert('Las contraseñas no coinciden');
+        return;
+    }
+    
+    fetch('process/change_password.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Contraseña actualizada correctamente');
+            this.reset();
+            closeModal('passwordModal');
+        } else {
+            alert(data.message || 'Error al cambiar la contraseña');
+        }
+    });
+});
+
+// Funciones para los modales
+function openEditModal() {
+    document.getElementById('editProfileModal').style.display = 'block';
+}
+
+function openPasswordModal() {
+    document.getElementById('passwordModal').style.display = 'block';
+}
+
+function closeModal(modalId) {
+    document.getElementById(modalId).style.display = 'none';
+}
+
+// Cerrar modal al hacer clic fuera
+window.onclick = function(event) {
+    if (event.target.classList.contains('modal')) {
+        event.target.style.display = 'none';
+    }
+}
+</script>
 
 <?php
 }

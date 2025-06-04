@@ -101,3 +101,152 @@
 .btn-cancel::before {
     background: linear-gradient(#081b29, #dc3545, #081b29, #dc3545);
 }
+
+/* Estilos específicos para formularios de datos fiscales y cambio de contraseña */
+.fiscal-form-container,
+.password-form-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    background: rgba(8, 27, 41, 0.7);
+    backdrop-filter: blur(5px);
+    border: 2px solid #0ef;
+    box-shadow: 0 0 25px #0ef;
+    border-radius: 10px;
+    padding: 40px;
+    margin: 50px auto;
+    color: #fff;
+}
+
+.fiscal-form-container h2,
+.password-form-container h2 {
+    font-size: 32px;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.fiscal-form-container h2::after,
+.password-form-container h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background: #0ef;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+.password-requirements {
+    margin: 20px 0;
+    padding: 15px;
+    background: rgba(0, 238, 255, 0.1);
+    border-radius: 10px;
+    border: 1px solid rgba(0, 238, 255, 0.2);
+}
+
+.password-requirements h3 {
+    color: #0ef;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.password-requirements ul {
+    list-style: none;
+    padding: 0;
+}
+
+.password-requirements li {
+    padding: 5px 0;
+    color: #ff4444;
+    font-size: 14px;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+.password-requirements li::before {
+    content: '•';
+    color: currentColor;
+    margin-right: 10px;
+}
+
+.password-requirements li.valid {
+    color: #00c851;
+}
+
+.btn-form-container {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.btn-form {
+    flex: 1;
+    position: relative;
+    height: 45px;
+    background: transparent;
+    border: 2px solid #0ef;
+    outline: none;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 600;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.btn-form::before {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 300%;
+    background: linear-gradient(#081b29, #0ef, #081b29, #0ef);
+    z-index: -1;
+    transition: .5s;
+}
+
+.btn-form:hover::before {
+    top: 0;
+}
+
+.btn-form.cancel {
+    border-color: #ff4444;
+}
+
+.btn-form.cancel::before {
+    background: linear-gradient(#081b29, #ff4444, #081b29, #ff4444);
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .fiscal-form-container,
+    .password-form-container {
+        width: 90%;
+        padding: 20px;
+        margin: 20px auto;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .btn-form-container {
+        flex-direction: column;
+    }
+}

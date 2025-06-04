@@ -229,7 +229,68 @@ session_start();
                 }
             })
 
+            function loadNotifications() {
+                fetch('process/get_notifications.php')
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            updateNotificationBadge(data.unread);
+                            updateNotificationDropdown(data.notifications);
+                        }
+                    });
+            }
 
+            function updateNotificationBadge(count) {
+                const badge = document.querySelector('.nav-link .badge');
+                badge.textContent = count;
+                badge.style.display = count > 0 ? 'flex' : 'none';
+            }
+
+            function updateNotificationDropdown(notifications) {
+                const dropdown = document.createElement('div');
+                dropdown.className = 'notification-dropdown';
+                
+                notifications.forEach(notif => {
+                    const item = document.createElement('div');
+                    item.className = `notification-item ${notif.leida ? '' : 'unread'}`;
+                    item.innerHTML = `
+                        <div class="notification-content">
+                            <p>${notif.mensaje}</p>
+                            <small>${notif.tiempo}</small>
+                        </div>
+                    `;
+                    
+                    if (!notif.leida) {
+                        item.addEventListener('click', () => markAsRead(notif.id));
+                    }
+                    
+                    dropdown.appendChild(item);
+                });
+
+                const container = document.querySelector('.notifications-container');
+                container.innerHTML = '';
+                container.appendChild(dropdown);
+            }
+
+            function markAsRead(id) {
+                fetch('process/mark_notification_read.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ id: id })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        loadNotifications();
+                    }
+                });
+            }
+
+            // Cargar notificaciones al inicio y cada minuto
+            loadNotifications();
+            setInterval(loadNotifications, 60000);
         </script>
 
     <?php

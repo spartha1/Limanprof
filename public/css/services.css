@@ -1,0 +1,239 @@
+.services-container {
+    padding: 20px;
+}
+
+.services-wrapper {
+    position: relative;
+    width: 100%;
+    padding: 20px;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 20px;
+}
+
+.service-card, .service-box {
+    background: rgba(8, 27, 41, 0.7);
+    border-radius: 10px;
+    padding: 25px;
+    border: 2px solid #0ef;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card:hover, .service-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 25px rgba(0, 238, 255, 0.3);
+}
+
+.service-card::before, .service-box::before {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 300%;
+    background: linear-gradient(rgba(8, 27, 41, 0.3), rgba(0, 238, 255, 0.1), rgba(8, 27, 41, 0.3));
+    z-index: 0;
+    transition: .5s;
+}
+
+.service-card:hover::before, .service-box:hover::before {
+    top: 0;
+}
+
+.service-content {
+    padding: 30px;
+}
+
+.service-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.service-icon, .service-header .icon {
+    font-size: 2.5rem;
+    color: #0ef;
+}
+
+.service-header h2 {
+    color: #fff;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.service-info {
+    position: relative;
+    z-index: 1;
+}
+
+.service-info h3 {
+    color: #0ef;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.description, .service-description {
+    color: #fff;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.price {
+    color: #0ef;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+
+.btn, .btn-cotizar {
+    position: relative;
+    width: 100%;
+    height: 45px;
+    padding: 12px;
+    background: transparent;
+    border: 2px solid #0ef;
+    color: #fff;
+    border-radius: 40px;
+    font-weight: 600;
+    cursor: pointer;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    z-index: 1;
+}
+
+.btn::before, .btn-cotizar::before {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 300%;
+    background: linear-gradient(#081b29, #0ef, #081b29, #0ef);
+    z-index: -1;
+    transition: .5s;
+}
+
+.btn:hover::before, .btn-cotizar:hover::before {
+    top: 0;
+}
+
+/* Modal styles */
+.modal .form-box {
+    position: relative;
+    width: 450px;
+    background: rgba(8, 27, 41, 0.7);
+    backdrop-filter: blur(5px);
+    border: 2px solid #0ef;
+    box-shadow: 0 0 25px #0ef;
+    border-radius: 10px;
+    padding: 40px;
+    margin: 20px auto;
+}
+
+.modal .input-box {
+    position: relative;
+    width: 100%;
+    height: auto;
+    margin: 25px 0;
+}
+
+.modal .input-box input,
+.modal .input-box textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #fff;
+    padding: 10px 25px 10px 5px;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 500;
+    transition: .5s;
+}
+
+.modal .input-box textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.modal .input-box label {
+    position: absolute;
+    top: 10px;
+    left: 5px;
+    font-size: 16px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.modal .input-box input:focus ~ label,
+.modal .input-box input:valid ~ label,
+.modal .input-box textarea:focus ~ label,
+.modal .input-box textarea:valid ~ label {
+    top: -5px;
+    color: #0ef;
+}
+
+.modal .input-box input:focus,
+.modal .input-box input:valid,
+.modal .input-box textarea:focus,
+.modal .input-box textarea:valid {
+    border-bottom-color: #0ef;
+}
+
+.modal .input-box i {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #fff;
+    transition: .5s;
+}
+
+.modal .input-box input:focus ~ i,
+.modal .input-box input:valid ~ i {
+    color: #0ef;
+}
+
+/* Animations */
+.animacion {
+    transform: translateX(0);
+    opacity: 1;
+    filter: blur(0);
+    transition: .7s ease;
+    animation: slideRight .5s ease forwards;
+    animation-delay: calc(.2s * var(--i));
+}
+
+@keyframes slideRight {
+    0% {
+        transform: translateX(-100px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .modal .form-box {
+        width: 90%;
+        padding: 20px;
+    }
+}

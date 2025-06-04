@@ -1,10 +1,13 @@
 <?php
 $usuario_id = $_SESSION['id'];
-$sql = "SELECT c.*, s.nombre as servicio_nombre 
-        FROM cotizaciones c
-        JOIN servicios s ON c.servicio_id = s.id
-        WHERE c.usuario_id = ?
-        ORDER BY c.fecha_creacion DESC 
+// Modificada la consulta para usar created_at en lugar de fecha_creacion
+$sql = "SELECT c.id, c.estado, c.created_at, 
+               s.nombre as servicio_nombre, 
+               COALESCE(c.precio_cotizado, s.precio_base) as precio 
+        FROM cotizaciones c 
+        JOIN servicios s ON c.servicio_id = s.id 
+        WHERE c.usuario_id = ? 
+        ORDER BY c.created_at DESC 
         LIMIT 5";
 
 $stmt = $conexion->prepare($sql);
@@ -13,41 +16,42 @@ $stmt->execute();
 $cotizaciones = $stmt->get_result();
 ?>
 
-<table class="mini-table">
-    <thead>
-        <tr>
-            <th>Servicio</th>
-            <th>Fecha</th>
-            <th>Estado</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php if ($cotizaciones->num_rows > 0): ?>
-            <?php while ($cotizacion = $cotizaciones->fetch_assoc()): ?>
-                <tr>
-                    <td><?php echo htmlspecialchars($cotizacion['servicio_nombre']); ?></td>
-                    <td><?php echo date('d/m/Y', strtotime($cotizacion['fecha_creacion'])); ?></td>
-                    <td>
-                        <span class="badge badge-<?php echo $cotizacion['estado']; ?>">
-                            <?php echo ucfirst($cotizacion['estado']); ?>
-                        </span>
-                    </td>
-                    <td>
-                        <button onclick="verCotizacion(<?php echo $cotizacion['id']; ?>)" 
-                                class="btn btn-sm btn-primary">
-                            <i class='bx bx-show'></i>
-                        </button>
-                    </td>
-                </tr>
-            <?php endwhile; ?>
-        <?php else: ?>
+<div class="content-data">
+    <div class="head">
+        <h3>Cotizaciones Recientes</h3>
+    </div>
+    
+    <table class="mini-table">
+        <thead>
             <tr>
-                <td colspan="4" class="text-center">No hay cotizaciones recientes</td>
+                <th>Servicio</th>
+                <th>Estado</th>
+                <th>Fecha</th>
+                <th>Precio</th>
             </tr>
-        <?php endif; ?>
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            <?php if ($cotizaciones->num_rows > 0): ?>
+                <?php while ($cot = $cotizaciones->fetch_assoc()): ?>
+                    <tr>
+                        <td><?php echo htmlspecialchars($cot['servicio_nombre']); ?></td>
+                        <td>
+                            <span class="badge badge-<?php echo $cot['estado']; ?>">
+                                <?php echo ucfirst($cot['estado']); ?>
+                            </span>
+                        </td>
+                        <td><?php echo date('d/m/Y', strtotime($cot['created_at'])); ?></td>
+                        <td>$<?php echo number_format($cot['precio'], 2); ?></td>
+                    </tr>
+                <?php endwhile; ?>
+            <?php else: ?>
+                <tr>
+                    <td colspan="4" class="text-center">No hay cotizaciones recientes</td>
+                </tr>
+            <?php endif; ?>
+        </tbody>
+    </table>
+</div>
 
 <script>
 function verDetalleServicio(id) {
