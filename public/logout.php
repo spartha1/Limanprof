@@ -1,19 +1,20 @@
 <?php
 session_start();
-$_SESSION = []; // Vaciar las variables de sesión
 
-// Invalidar la cookie de sesión si existe
-if (ini_get("session.use_cookies")) {
-    $params = session_get_cookie_params();
-    setcookie(session_name(), '', time() - 42000,
-        $params["path"], $params["domain"],
-        $params["secure"], $params["httponly"]
-    );
+// Destruir todas las variables de sesión
+$_SESSION = array();
+
+// Destruir la cookie de sesión si existe
+if (isset($_COOKIE[session_name()])) {
+    setcookie(session_name(), '', time()-3600, '/');
 }
 
 // Destruir la sesión
 session_destroy();
 
-// Redirigir al inicio de sesión
-header("Location: ../Limanprof/index.php");
+// Redirigir al index con mensaje de éxito
+echo "<script>
+        alert('Sesión cerrada correctamente');
+        window.location.href = '/Limanprof/index.php';
+      </script>";
 exit();

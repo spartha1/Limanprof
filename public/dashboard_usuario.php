@@ -17,10 +17,10 @@ session_start();
 
 <body>
     <?php
-    if ($_SESSION['tipo'] == "usuario") {
+    if ($_SESSION['tipo'] == "cliente") {
     ?>
         <header class="header">
-            <a href="#"><img class="logo" src="/Limanprof/Public/img/logoLimanprofnprofSB.png" alt="Logo de Limanprofnprof"></a>
+            <a href="#"><img class="logo" src="/Limanprof/Public/img/logoLimanprofSB.png" alt="Logo de Limanprofnprof"></a>
 
             <section id="content">
                 <!-- NAVBAR -->
@@ -55,167 +55,75 @@ session_start();
 
         </header>
 
-        <aside>
+        <aside id="sidebar">
             <section id="sidebar">
-                <a href="#" class="brand"><i class='bx bxs-smile icon'></i> UserSite</a>
+                <a href="#" class="brand"><i class='bx bxs-smile icon'></i> ClientSite</a>
+                <a href="#" class="brand_sesion">
+                    <?php
+                    echo "Hola: " . $_SESSION['nombre_usuario'];
+                    echo "<br>";
+                    echo " " . $_SESSION['tipo'];
+                    ?>
+                </a>
+
                 <ul class="side-menu">
-                    <li><a href="#" class="active"><i class='bx bxs-dashboard icon'></i> Mi perfil</a></li>
-                    <li class="divider" data-text="main">Main</li>
+                    <li><a href="?page=dashboard_main" class="active">
+                        <i class='bx bxs-dashboard icon'></i> Dashboard
+                    </a></li>
+
+                    <li class="divider" data-text="Principal">Principal</li>
+
                     <li>
-                        <a href="#"><i class='bx bxs-inbox icon'></i> Servicios <i class='bx bx-chevron-right icon-right'></i></a>
+                        <a href="#"><i class='bx bxs-user icon'></i> Mi Perfil <i class='bx bx-chevron-right icon-right'></i></a>
                         <ul class="side-dropdown">
-                            <li><a href="#">Mis servicios</a></li>
-                            <li><a href="#">Cotizaciones</a></li>
-                            <li><a href="#">Productos</a></li>
-                            <li><a href="#">Mis pedidos</a></li>
+                            <li><a href="?page=perfil">Datos Generales</a></li>
+                            <li><a href="?page=datos_fiscales">Datos Fiscales</a></li>
+                            <li><a href="?page=cambiar_password">Cambiar Contraseña</a></li>
                         </ul>
                     </li>
-                    <li><a href="#"><i class='bx bxs-chart icon'></i> Charts</a></li>
-                    <li><a href="#"><i class='bx bxs-widget icon'></i> Widgets</a></li>
-                    <li class="divider" data-text="table and forms">Table and forms</li>
-                    <li><a href="#"><i class='bx bx-table icon'></i> Tables</a></li>
+
                     <li>
-                        <a href="#"><i class='bx bxs-notepad icon'></i> Forms <i class='bx bx-chevron-right icon-right'></i></a>
+                        <a href="#"><i class='bx bxs-briefcase icon'></i> Servicios <i class='bx bx-chevron-right icon-right'></i></a>
                         <ul class="side-dropdown">
-                            <li><a href="#">Basic</a></li>
-                            <li><a href="#">Select</a></li>
-                            <li><a href="#">Checkbox</a></li>
-                            <li><a href="#">Radio</a></li>
+                            <li><a href="?page=historial_servicios">Historial de Servicios</a></li>
+                            <li><a href="?page=solicitar_servicio">Solicitar Servicio</a></li>
+                            <li><a href="?page=cotizaciones">Mis Cotizaciones</a></li>
                         </ul>
                     </li>
+
+                    <li>
+                        <a href="#"><i class='bx bxs-cart icon'></i> Compras <i class='bx bx-chevron-right icon-right'></i></a>
+                        <ul class="side-dropdown">
+                            <li><a href="?page=productos">Catálogo de Productos</a></li>
+                            <li><a href="?page=carrito">Mi Carrito</a></li>
+                            <li><a href="?page=pedidos">Mis Pedidos</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="divider" data-text="Extra">Extra</li>
+                    <li><a href="?page=ayuda"><i class='bx bxs-help-circle icon'></i> Ayuda</a></li>
                 </ul>
             </section>
-
         </aside>
 
         <main>
-        <h1 class="title">Dashboard</h1>
-			<ul class="breadcrumbs">
-				<li><a href="#">Home</a></li>
-				<li class="divider">/</li>
-				<li><a href="#" class="active">Dashboard</a></li>
-			</ul>
-			<!-- <div class="info-data">
-				<div class="card">
-					<div class="head">
-						<div>
-							<h2>1500</h2>
-							<p>Traffic</p>
-						</div>
-						<i class='bx bx-trending-up icon' ></i>
-					</div>
-					<span class="progress" data-value="40%"></span>
-					<span class="label">40%</span>
-				</div>
-				<div class="card">
-					<div class="head">
-						<div>
-							<h2>234</h2>
-							<p>Sales</p>
-						</div>
-						<i class='bx bx-trending-down icon down' ></i>
-					</div>
-					<span class="progress" data-value="60%"></span>
-					<span class="label">60%</span>
-				</div>
-				<div class="card">
-					<div class="head">
-						<div>
-							<h2>465</h2>
-							<p>Pageviews</p>
-						</div>
-						<i class='bx bx-trending-up icon' ></i>
-					</div>
-					<span class="progress" data-value="30%"></span>
-					<span class="label">30%</span>
-				</div>
-				<div class="card">
-					<div class="head">
-						<div>
-							<h2>235</h2>
-							<p>Visitors</p>
-						</div>
-						<i class='bx bx-trending-up icon' ></i>
-					</div>
-					<span class="progress" data-value="80%"></span>
-					<span class="label">80%</span>
-				</div>
-			</div>
-			<div class="data">
-				<div class="content-data">
-					<div class="head">
-						<h3>Sales Report</h3>
-						<div class="menu">
-							<i class='bx bx-dots-horizontal-rounded icon'></i>
-							<ul class="menu-link">
-								<li><a href="#">Edit</a></li>
-								<li><a href="#">Save</a></li>
-								<li><a href="#">Remove</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="chart">
-						<div id="chart"></div>
-					</div>
-				</div>
-				<div class="content-data">
-					<div class="head">
-						<h3>Chatbox</h3>
-						<div class="menu">
-							<i class='bx bx-dots-horizontal-rounded icon'></i>
-							<ul class="menu-link">
-								<li><a href="#">Edit</a></li>
-								<li><a href="#">Save</a></li>
-								<li><a href="#">Remove</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="chat-box">
-						<p class="day"><span>Today</span></p>
-						<div class="msg">
-							<img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cGVvcGxlfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="">
-							<div class="chat">
-								<div class="profile">
-									<span class="username">Alan</span>
-									<span class="time">18:30</span>
-								</div>
-								<p>Hello</p>
-							</div>
-						</div>
-						<div class="msg me">
-							<div class="chat">
-								<div class="profile">
-									<span class="time">18:30</span>
-								</div>
-								<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque voluptatum eos quam dolores eligendi exercitationem animi nobis reprehenderit laborum! Nulla.</p>
-							</div>
-						</div>
-						<div class="msg me">
-							<div class="chat">
-								<div class="profile">
-									<span class="time">18:30</span>
-								</div>
-								<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, architecto!</p>
-							</div>
-						</div>
-						<div class="msg me">
-							<div class="chat">
-								<div class="profile">
-									<span class="time">18:30</span>
-								</div>
-								<p>Lorem ipsum, dolor sit amet.</p>
-							</div>
-						</div>
-					</div>
-					<form action="#">
-						<div class="form-group">
-							<input type="text" placeholder="Type...">
-							<button type="submit" class="btn-send"><i class='bx bxs-send' ></i></button>
-						</div>
-					</form>
-				</div>
-			</div> -->
-
+            <?php
+            // Verificar si se ha especificado una página
+            $page = isset($_GET['page']) ? $_GET['page'] : 'dashboard_main';
+            
+            // Sanitizar el nombre de la página
+            $page = preg_replace('/[^a-zA-Z0-9_]/', '', $page);
+            
+            // Construir la ruta del archivo
+            $file_path = "dashboard_user_content/{$page}.php";
+            
+            // Verificar si el archivo existe y cargarlo
+            if (file_exists($file_path)) {
+                include($file_path);
+            } else {
+                include("dashboard_user_content/dashboard_main.php");
+            }
+            ?>
         </main>
         <footer>
             <div class="waves">
@@ -227,7 +135,7 @@ session_start();
             <div class="container">
                 <div class="wrapper">
                     <div class="footer-widget">
-                        <a href=""><img class="logo" src="/Limanprof/Public/img/logoLimanprofnprofSB.png" alt="Logo de Limanprofnprof"></a>
+                        <a href=""><img class="logo" src="/Limanprof/Public/img/logoLimanprofSB.png" alt="Logo de Limanprofnprof"></a>
                         <p>No somos una opcion, Somos la solución
                         </p>
                         <ul class="social_icon">

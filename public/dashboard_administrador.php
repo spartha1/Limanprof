@@ -46,7 +46,9 @@ session_start();
                         <ul class="profile-link">
                             <li><a href="?page=perfil"><i class='bx bxs-user-circle icon'></i> Mi Perfil</a></li>
                             <li><a href="#"><i class='bx bxs-cog'></i> Configuración</a></li>
-                            <li><a href="logout.php"><i class='bx bxs-log-out-circle'></i> Cerrar Sesión</a></li>
+                            <li><a href="logout.php" onclick="return confirm('¿Está seguro de cerrar sesión?');">
+                                <i class='bx bxs-log-out-circle'></i> Cerrar Sesión
+                            </a></li>
                         </ul>
                     </div>
                 </nav>

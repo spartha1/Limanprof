@@ -46,7 +46,7 @@ session_start();
                     alert('Bienvenido " . $nombre_usuario . "  !!!');
                     location.assign('dashboard_administrador.php');
                     </script>";
-                } else if ($fila['tipo'] == "usuario") {
+                } else if ($fila['tipo'] == "cliente") {
                     echo "<script language='JavaScript'>
                     alert('Bienvenido " . $nombre_usuario . "  !!!');
                     location.assign('dashboard_usuario.php');
