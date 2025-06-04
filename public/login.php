@@ -155,7 +155,17 @@ session_start();
                             location.assign(history.back());
                             </script>";
                         } else {
-                            // Insertar nuevo usuario con tipo 'cliente'
+                            // Verificar si existe el rol 'cliente'
+                            $check_role = "SELECT nombre FROM roles WHERE nombre = 'cliente'";
+                            $role_result = $conexion->query($check_role);
+                            
+                            if ($role_result->num_rows == 0) {
+                                // Si no existe el rol, lo creamos
+                                $create_role = "INSERT INTO roles (nombre, descripcion) VALUES ('cliente', 'Cliente registrado')";
+                                $conexion->query($create_role);
+                            }
+
+                            // Ahora podemos insertar el usuario con el rol 'cliente'
                             $sql = "INSERT INTO usuarios (nombre_usuario, email, contraseña, tipo, codigo_pais, telefono) 
                                     VALUES (?, ?, ?, 'cliente', '+52', '')";
                             $stmt = $conexion->prepare($sql);
