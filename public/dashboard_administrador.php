@@ -92,9 +92,9 @@ session_start();
                     <li>
                         <a href="#"><i class='bx bxs-receipt icon'></i> Facturación <i class='bx bx-chevron-right icon-right'></i></a>
                         <ul class="side-dropdown">
-                            <li><a href="#">Facturas Generadas</a></li>
-                            <li><a href="#">Facturas Pendientes</a></li>
-                            <li><a href="#">Datos Fiscales</a></li>
+                            <li><a href="?page=facturas_generadas">Facturas Generadas</a></li>
+                            <li><a href="?page=facturas_pendientes">Facturas Pendientes</a></li>
+                            <li><a href="?page=datos_fiscales">Datos Fiscales</a></li>
                         </ul>
                     </li>
 
