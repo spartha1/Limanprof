@@ -1,6 +1,6 @@
 <?php
 // Redirección programada después de 3 segundos
-header("Refresh: 5; url=../Limanprof/index.php");
+header("Refresh: 5; url=../index.php");
 ?>
 
 <!DOCTYPE html>
@@ -61,7 +61,7 @@ header("Refresh: 5; url=../Limanprof/index.php");
 
 <body>
     <section>
-        <img src="/Limanprof/Public/img/logoLimanprofnprofSB.png" alt="Limanprofnprof Logo" class="logo">
+        <img src="/Limanprof/Public/img/logoLimanprofSB.png" alt="Limanprof Logo" class="logo">
 
         <div class="loader"></div>
         <div class="text"><span>Redirigiendo a la página principal...</span></div>
