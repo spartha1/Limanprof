@@ -12,7 +12,7 @@ session_start();
     <link rel="stylesheet" href="/Limanprof/public/css/login.css">
     <!-- Estilos cajas alerta -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="/Limanprof/public/img/Icono.png" rel="icon" type="image/x-icon">
 </head>
 
@@ -62,38 +62,38 @@ session_start();
     } else {
     ?>
         <header class="header">
-            <a href="#"><img class="logo" src="/Limanprof/public/img/logoLimanprofSB.png" alt="Logo de Limanprofnprof"></a>
-            <input type="checkbox" id="check">
+            <div class="logo-container">
+                <a href="/Limanprof/index.php">
+                    <img class="logo" src="/Limanprof/Public/img/logoLimanprofSB.png" alt="Logo de Limanprofnprof">
+                </a>
+            </div>
 
-            <label for="check" class="icons">
-                <i class='bx bx-menu' id="menu-icon"><ion-icon name="menu-outline"></ion-icon></i>
-                <i class='bx bx-x' id="close-icon"><svg xmlns="http://www.w3.org/2000/svg" height="24px"
-                        viewBox="0 -960 960 960" width="24px" fill="#000000">
-                        <path
-                            d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
-                    </svg></i>
-            </label>
-            <nav class="menu">
-                <a href="/Limanprof/Limanprof/index.php" style="--i:0;">Inicio</a>
-                <a href="/Limanprof/public/Nosotros.php" style="--i:1;">Nosotros</a>
-                <!-- Submenu Servicios -->
-                <div class="menu-item">
-                    <a href="#" style="--i:2;">Servicios ▼</a>
-                    <div class="submenu">
-                        <a href="/Limanprof/public/Limpieza.php" style="--i:3;">Limpieza</a>
-                        <a href="/Limanprof/public/Jardineria.php" style="--i:4;">Jardinería</a>
-                        <a href="/Limanprof/public/Mantenimiento.php" style="--i:5;">Mantenimiento</a>
-                        <a href="/Limanprof/public/Especial.php" style="--i:6;">Especializado</a>
-                    </div>
-                </div>
-                <a href="/Limanprof/public/Clientes.php" style="--1:6;">Nuestros clientes</a>
-                <a href="/Limanprof/public/Contacto.php" style="--i:3;">Contacto</a>
-                <a href="/Limanprof/public/login.php" style="--i:4;">Iniciar sesión</a>
+            <button class="nav-toggle" aria-label="Abrir menú">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="/Limanprof/index.php" class="nav-link">Inicio</a></li>
+                    <li><a href="/Limanprof/public/Nosotros.php" class="nav-link">Nosotros</a></li>
+                    <li class="nav-dropdown">
+                        <a href="#" class="nav-link">Servicios <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/Limanprof/public/Limpieza.php">Limpieza</a></li>
+                            <li><a href="/Limanprof/public/Jardineria.php">Jardinería</a></li>
+                            <li><a href="/Limanprof/public/Mantenimiento.php">Mantenimiento</a></li>
+                            <li><a href="/Limanprof/public/Especial.php">Especializado</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/Limanprof/public/Clientes.php" class="nav-link">Nuestros clientes</a></li>
+                    <li><a href="/Limanprof/public/Contacto.php" class="nav-link">Contacto</a></li>
+                    <li><a href="/Limanprof/public/login.php" class="nav-link">Iniciar sesión</a></li>
+                </ul>
             </nav>
-
         </header>
 
         <main>
+            <br><br><br>
             <!-- Contenedor Login -->
             <div class="wrapper-login">
                 <!-- Animaciones -->
@@ -299,6 +299,36 @@ session_start();
             wrapper.classList.remove('active');
         }
     </script>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    const dropdowns = document.querySelectorAll('.nav-dropdown');
+
+    navToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('show');
+    });
+
+    dropdowns.forEach(dropdown => {
+        const dropdownToggle = dropdown.querySelector('.nav-link');
+        const dropdownMenu = dropdown.querySelector('.dropdown-menu');
+
+        dropdownToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            dropdown.classList.toggle('show-dropdown');
+        });
+
+        // Permitir que los enlaces del menú desplegable funcionen
+        const dropdownLinks = dropdown.querySelectorAll('.dropdown-menu a');
+        dropdownLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.stopPropagation(); // Evitar que el clic se propague al toggle
+                window.location.href = link.href; // Navegar a la página
+            });
+        });
+    });
+});
+</script>
 
 </body>
 
