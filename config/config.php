@@ -43,11 +43,4 @@ if ($is_production) {
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
 }
-
-// Configuración de sesión
-ini_set('session.cookie_httponly', 1);
-ini_set('session.use_only_cookies', 1);
-if ($is_production) {
-    ini_set('session.cookie_secure', 1);
-}
 ?>
