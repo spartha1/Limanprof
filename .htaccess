@@ -3,9 +3,19 @@ Options -Indexes
 
 # Activar motor de reescritura
 RewriteEngine On
+RewriteBase /
 
-# Redirigir HTTP a HTTPS
+# Si estás en el subdirectorio en desarrollo
+RewriteCond %{HTTP_HOST} ^localhost$ [NC]
+RewriteBase /Limanprof/
+
+# Redirigir www a non-www en producción
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+# Forzar HTTPS en producción
 RewriteCond %{HTTPS} off
+RewriteCond %{HTTP_HOST} !^localhost$ [NC]
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 # Proteger archivos sensibles

@@ -10,6 +10,7 @@ if ($is_production) {
     define('DB_PASS', 'contraseña_segura_produccion');
     define('DB_NAME', 'limanprof_db');
     define('BASE_URL', 'https://limanprof.com');
+    define('SITE_ROOT', '/');
     
     // Configuraciones de seguridad para producción
     ini_set('display_errors', 0);
@@ -32,11 +33,20 @@ if ($is_production) {
     define('DB_PASS', '');
     define('DB_NAME', 'limanprof');
     define('BASE_URL', 'http://localhost/Limanprof');
+    define('SITE_ROOT', '/Limanprof/');
 }
 
 // Función para manejar rutas
 function get_asset_url($path) {
     return BASE_URL . '/public/' . ltrim($path, '/');
+}
+
+function asset_url($path) {
+    return SITE_ROOT . 'public/' . ltrim($path, '/');
+}
+
+function url($path) {
+    return SITE_ROOT . ltrim($path, '/');
 }
 
 // Conexión a la base de datos
