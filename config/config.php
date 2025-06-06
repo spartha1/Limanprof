@@ -4,11 +4,28 @@ $is_production = ($_SERVER['SERVER_NAME'] !== 'localhost');
 
 // Configuración de la base de datos
 if ($is_production) {
-    define('DB_HOST', 'localhost');
-    define('DB_USER', 'usuario_cpanel');
-    define('DB_PASS', 'contraseña_cpanel');
-    define('DB_NAME', 'nombre_db_cpanel');
-    define('BASE_URL', 'https://tudominio.com');
+    // Credenciales de producción
+    define('DB_HOST', 'tu_host_produccion');
+    define('DB_USER', 'usuario_produccion');
+    define('DB_PASS', 'contraseña_segura_produccion');
+    define('DB_NAME', 'limanprof_db');
+    define('BASE_URL', 'https://limanprof.com');
+    
+    // Configuraciones de seguridad para producción
+    ini_set('display_errors', 0);
+    error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
+    
+    // Configuración de sesión segura
+    ini_set('session.cookie_httponly', 1);
+    ini_set('session.cookie_secure', 1);
+    ini_set('session.use_only_cookies', 1);
+    ini_set('session.cookie_samesite', 'Strict');
+    
+    // Headers de seguridad
+    header("X-Frame-Options: SAMEORIGIN");
+    header("X-XSS-Protection: 1; mode=block");
+    header("X-Content-Type-Options: nosniff");
+    
 } else {
     define('DB_HOST', 'localhost');
     define('DB_USER', 'root');

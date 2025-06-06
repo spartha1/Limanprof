@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /config/
+Disallow: /vendor/
+Disallow: /logs/
+Disallow: /admin/
+Disallow: /dashboard_*
+Disallow: *.php$
+Sitemap: https://limanprof.com/sitemap.xml
