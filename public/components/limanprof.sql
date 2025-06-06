@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-06-2025 a las 23:29:36
+-- Tiempo de generación: 06-06-2025 a las 20:21:53
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -403,7 +403,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nombre_usuario`, `email`, `codigo_pais`, `telefono`, `contraseña`, `tipo`, `fecha_registro`, `foto_perfil`, `avatar_path`, `cover_path`, `biografia`, `ultima_conexion`) VALUES
-(8, 'leinad', 'leinadspartha@gmail.com', '+52', '', 'sueminencia', 'admin', '2025-06-04 17:55:38', 'default.png', 'img/avatars/default-avatar.jpg', 'img/covers/default-cover.jpg', 'Administrador de Limanprof', NULL),
+(8, 'leinad', 'leinadspartha@gmail.com', '+52', '', 'sueminencia', 'admin', '2025-06-04 17:55:38', 'default.png', 'img/avatars/user_8_avatar.jpg', 'img/covers/user_8_cover.jpeg', 'Administrador de Limanprof', NULL),
 (9, 'pancho', 'pistolas@gmail.com', '+52', '', 'panchopistolas', 'cliente', '2025-06-04 19:07:15', 'default.png', 'img/avatars/default-avatar.jpg', 'img/covers/default-cover.jpg', 'Usuario de Limanprof', NULL);
 
 --
