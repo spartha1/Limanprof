@@ -256,7 +256,7 @@ session_start();
                 <div class="footer-widget">
                     <h6>Enlaces</h6>
                     <ul class="links">
-                        <li><a href="/Limanprof/Limanprof/index.php">Inicio</a></li>
+                        <li><a href="/Limanprof/index.php">Inicio</a></li>
                         <li><a href="/Limanprof/public/Nosotros.php">Nosotros</a></li>
                     </ul>
                 </div>

@@ -72,7 +72,7 @@
         <div class="container">
             <div class="wrapper">
                 <div class="footer-widget">
-                    <a href=""><img class="logo" src="/Limanprof/Public/img/logoLimanproffSB.png" alt="Logo de Limanprofnprof"></a>
+                    <a href=""><img class="logo" src="/Limanprof/Public/img/logoLimanprof.png" alt="Logo de Limanprofnprof"></a>
                     <p>No somos una opción, somos la solución.
                     </p>
                     <ul class="social_icon">
@@ -91,7 +91,7 @@
                 <div class="footer-widget">
                     <h6>Enlaces</h6>
                     <ul class="links">
-                        <li><a href="/Limanprof/Public/Limanprof/index.php">Inicio</a></li>
+                        <li><a href="/Limanprof/index.php">Inicio</a></li>
                         <li><a href="/Limanprof/Public/Nosotros.php">Nosotros</a></li>
                     </ul>
                 </div>
